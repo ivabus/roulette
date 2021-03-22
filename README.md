@@ -2,7 +2,7 @@
 
 ## Open source game on VB.NET
 
-### Creator and mainteiner: Ivan Bushchik <ivabus06@yandex.ru>
+#### Creator and mainteiner: Ivan Bushchik <ivabus06@yandex.ru>
 
 ### License: GNU GPLv3
 
