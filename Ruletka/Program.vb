@@ -145,7 +145,10 @@ Module Program
         Console.WriteLine("TO18/FROM18 - ставка на сектор от 1 по 18/от 19 по 36 (1:2).")
         Console.WriteLine("EVEN/ODD - чётные/нечётные (1:2).")
         Console.WriteLine("Игрок изначально получает 5000 фишек.")
-        Console.WriteLine("После того, как игрок укажет, на что ставит, он указывает ОДНО количество фишек на каждую ставку.")
+        Console.WriteLine("После того, как игрок укажет, на что ставит, он указывает количество фишек на каждую ставку через пробел.")
+        Console.WriteLine("Например:")
+        Console.WriteLine("На что  ставите: 0 16 2L T12 RED ODD")
+        Console.WriteLine("Сколько ставите: 100 50 500 500 1000 1000")
         Console.WriteLine("Удачи!")
     End Sub
     
