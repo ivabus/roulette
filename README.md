@@ -1,10 +1,9 @@
-# Roulette
+# Рулетка
 
-## Open source game on VB.NET
+## Игра с открытым исходным кодом на VB.NET
 
-#### Creator and mainteiner: Ivan Bushchik <ivabus06@yandex.ru>
+#### Создатель и сопроводитель: Иван Бущик <ivabus06@yandex.ru>
 
-#### License: GNU GPLv3
+#### Лицензия: GNU GPLv3
 
-This game is console European roulette.
-The game has two languages: English and Russian.
+Игра представляет собой Европейскую рулетку в консоли.
