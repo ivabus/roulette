@@ -12,6 +12,12 @@ Module Program
         Next
     End Function
     
+    Sub sleep(d As Single)
+        Dim t As Single = Timer
+        Do while Timer - t < d
+        Loop
+    End Sub
+    
     Function spinWheel() As String()
         Dim rnd As New Random
         Dim probability(36) As Double
@@ -150,11 +156,30 @@ Module Program
         Console.WriteLine("На что ставите: 0 16 2L T12 RED ODD")
         Console.WriteLine("Сколько ставите: 100 50 500 500 1000 1000")
         Console.WriteLine("ВНИМАНИЕ! Количество ставок должно совпадать с количеством фишек, которые ставите, в примере 6 = 6.")
+        Console.WriteLine("Или просто нажмите ENTER, чтобы пропустить ставку.")
         Console.WriteLine("Удачи!")
         Console.ReadKey()
     End Sub
     
     Sub game()
+        Console.WriteLine("Игра началась!")
+        Dim fish As Long = 5000
+        Dim isGaming As Boolean = True
+        Do while isGaming xor fish
+            
+            
+            
+            
+            
+            Console.WriteLine("У Вас {0} фишек.", fish)
+            Console.WriteLine("Продолжить игру? (Y/n)")
+            Dim temp As String = Console.ReadLine()
+            If temp = "n" or temp = "N" Then
+                isGaming = False
+            Else IF temp = "" or temp = "y" or temp = "Y"
+                isGaming = True
+            End If
+        Loop
         
     End Sub
     
@@ -181,6 +206,5 @@ Module Program
             Case 3
                 Exit Sub
         End Select
-        Console.ReadKey()
     End Sub
 End Module
