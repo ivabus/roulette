@@ -29,7 +29,7 @@ Module Program
     End Sub
     
     Sub intro()
-        Console.SetCursorPosition(Console.WindowWidth \ 2 - Len(intr(0))\2,Console.WindowHeight()\2 - UBound(intr) + 2)
+        Console.SetCursorPosition(Console.WindowWidth \ 2 - Len(intr(0))\2,Console.WindowHeight()\2 - UBound(intr) + 3)
         For i = 0 To UBound(intr)
             Console.WriteLine(intr(i))
             Console.SetCursorPosition(Console.WindowWidth \ 2 - Len(intr(0))\2, Console.GetCursorPosition().Item2)
@@ -51,7 +51,18 @@ Module Program
             Console.Write(StrDup(Console.WindowWidth, "#"))
             sleep(0.0888)
         Next
+        Dim entr As String = "   Нажмите любую кнопку, чтобы начать игру! "
+        Console.SetCursorPosition((Console.WindowWidth \ 2) - Len(entr) \ 2,Console.WindowHeight - (Console.WindowHeight()\2 - UBound(intr) + 2) \ 4 - 1)
+        Console.Write(StrDup(Len(entr) + 2, " "))
+        
+        Console.SetCursorPosition((Console.WindowWidth \ 2) - Len(entr) \ 2,Console.WindowHeight - (Console.WindowHeight()\2 - UBound(intr) + 2) \ 4)
+        Console.Write(entr & "  ")
+        
+        Console.SetCursorPosition((Console.WindowWidth \ 2) - Len(entr) \ 2,Console.WindowHeight - (Console.WindowHeight()\2 - UBound(intr) + 2) \ 4 + 1)
+        Console.Write(StrDup(Len(entr) + 2, " "))
+        
         Console.ReadKey
+        Console.Clear
     End Sub
     
     Function spinWheel() As String()
@@ -214,7 +225,37 @@ Module Program
                 isGaming = False
             Else IF temp = "" or temp = "y" or temp = "Y"
                 isGaming = True
+            Else
+                Console.WriteLine("Неверный ввод, продолжаем игру.")
             End If
+            
+            
+            Dim generated() As String = spinWheel()
+            Console.Clear
+            Console.Write("Делайте ставки: ")
+            Dim stav As New List(Of String)
+            stav = Console.ReadLine().Split.ToList()
+            Console.Write("Укажите суммы ставок: ")
+            Dim summs As New List(Of Integer)
+            Dim summ() As String
+            summ = Console.ReadLine().Split
+            For i = 0 To UBound(summ)
+                summs.Add(Int(summ(i)))
+            Next
+            If Len(stav) <> Len(summs) Or summs.Sum() > fish Then Console.WriteLine("Ставки не корректны. Пропуск.") : stav.Clear() : summs.Clear()
+            Console.WriteLine("Крутим колесо...")
+            sleep(5)
+            Dim indedx As Integer
+            For i = 0 To UBound(generated)
+                If stav.Contains(generated(i)) Then
+                    indedx = stav.IndexOf(generated(i))
+                    
+                End If
+            Next
+            
+            
+            display(Int(generated(0)))
+            Console.WriteLine("")
         Loop
         
     End Sub
@@ -230,10 +271,16 @@ Module Program
         Console.WriteLine("1) Начать игру")
         Console.WriteLine("2) Ознакомиться с правилами")
         Console.WriteLine("3) Выйти из игры")
-        Dim n As Integer = Console.ReadLine
+        Dim input As Char = Console.ReadKey.KeyChar
+        Dim n As Integer = If(Int(input.ToString()) = 1 Or Int(input.ToString()) = 2 Or Int(input.ToString()) = 3, Int(input.ToString()), 0)
         Dim history As New List(Of Integer)
         Dim historyC As New List(Of Integer)
         Select Case n
+            Case 0
+                Console.WriteLine()
+                Console.WriteLine("Неправильный ввод!")
+                sleep(5)
+                Main
             Case 1
                 game()
                 Main()
