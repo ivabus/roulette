@@ -6,6 +6,16 @@ Module Program
                               {0, 1, 2, 1, 2, 1, 2, 1, 2, 1, 2, 1, 2, 1, 2, 1, 2, 1, 2, 1, 2, 1, 2, 1, 2, 1, 2, 1, 2, 1, 2, 1, 2, 1, 2, 1, 2}}
     Dim colors() As ConsoleColor = {ConsoleColor.White, ConsoleColor.Red, ConsoleColor.Black}
     Dim ringRank0() As Integer = {0, 32, 15, 19, 4, 21, 2, 25, 17, 34, 6, 27, 13, 36, 11, 30, 8, 23, 10, 5, 24, 16, 33, 1, 20, 14, 31, 9, 22,18, 29, 7, 28, 12, 35, 3, 26}
+    Dim intr() As String = {
+                                "####    ###   #   #  #      #####  #####  #####  #####", 
+                                "#   #  #   #  #   #  #      #        #      #    #     ",
+                                "#   #  #   #  #   #  #      #        #      #    #     ",
+                                "#   #  #   #  #   #  #      #        #      #    #     ",
+                                "####   #   #  #   #  #      ####     #      #    ####  ",
+                                "##     #   #  #   #  #      #        #      #    #     ",
+                                "# #    #   #  #   #  #      #        #      #    #     ",
+                                "#  #   #   #  #   #  #      #        #      #    #     ",
+                                "#   #   ###    ###   #####  #####    #      #    ##### "}
     Function GetIndex(mass() As Integer, obj As Integer) As Integer
         For i = 0 To UBound(mass)
             If mass(i) = obj Then Return i
@@ -16,6 +26,32 @@ Module Program
         Dim t As Single = Timer
         Do while Timer - t < d
         Loop
+    End Sub
+    
+    Sub intro()
+        Console.SetCursorPosition(Console.WindowWidth \ 2 - Len(intr(0))\2,Console.WindowHeight()\2 - UBound(intr) + 2)
+        For i = 0 To UBound(intr)
+            Console.WriteLine(intr(i))
+            Console.SetCursorPosition(Console.WindowWidth \ 2 - Len(intr(0))\2, Console.GetCursorPosition().Item2)
+            sleep(0.0888)
+        Next
+        'sleep(5)
+        Console.SetCursorPosition(0,0)
+        For i = 0 To (Console.WindowHeight()\2 - UBound(intr) + 2) \ 2
+            Console.Write(StrDup(Console.WindowWidth, "#"))
+            sleep(0.0888)
+        Next
+        For i = 0 To Console.WindowHeight - (Console.WindowHeight()\2 - UBound(intr) + 2) - 3
+            Console.Write(StrDup((Console.WindowWidth \ 2 - Len(intr(0)) \ 2) \ 2, "#")) 
+            Console.SetCursorPosition(Console.WindowWidth - (Console.WindowWidth \ 2 - Len(intr(0)) \ 2) \ 2, (Console.GetCursorPosition().Item2))
+            Console.WriteLine(StrDup((Console.WindowWidth \ 2 - Len(intr(0)) \ 2) \ 2 - 1 , "#"))
+            sleep(0.0888)
+        Next
+        For i = 0 To (Console.WindowHeight()\2 - UBound(intr) + 2) \ 2
+            Console.Write(StrDup(Console.WindowWidth, "#"))
+            sleep(0.0888)
+        Next
+        Console.ReadKey
     End Sub
     
     Function spinWheel() As String()
@@ -188,6 +224,7 @@ Module Program
         Randomize()
         Console.Clear()
         Console.ForegroundColor = ConsoleColor.Black
+        intro()
         'Console.SetWindowSize(108,100)
         Console.WriteLine("Игра Рулетка")
         Console.WriteLine("1) Начать игру")
