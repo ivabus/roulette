@@ -245,9 +245,10 @@ Module Program
             If Len(stav) <> Len(summs) Or summs.Sum() > fish Then Console.WriteLine("Ставки не корректны. Пропуск.") : stav.Clear() : summs.Clear()
             Console.WriteLine("Крутим колесо...")
             sleep(5)
+            display(Int(generated(1)))
             Dim indedx As Integer
-            For i = 0 To UBound(generated)
-                If stav.Contains(generated(i)) Then
+            For i = 0 To UBound(stav.ToArray())
+                If generated.Contains(stav.ToArray(i)) Then
                     indedx = stav.IndexOf(generated(i))
                     
                 End If
@@ -282,9 +283,11 @@ Module Program
                 sleep(5)
                 Main
             Case 1
+                Console.Clear
                 game()
                 Main()
             Case 2
+                Console.Clear
                 rules()
                 Main()
             Case 3
