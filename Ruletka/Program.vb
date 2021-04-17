@@ -252,25 +252,23 @@ Module Program
             sleep(5)
             display(Int(generated(0)))
             Dim saray() As Integer = summs.ToArray()
+            fish -= saray.Sum()
             Dim indedx As Integer
-            For i = 0 To UBound(saray)
-                fish -= saray(i)
-            Next
             For i = 0 To UBound(generated)
                 If stav.Contains(generated(i)) Then
                     indedx = stav.IndexOf(generated(i))
                     If IsNumeric(generated(i))
-                        summs(indedx) *= 37
+                        saray(indedx) *= 35
                     Else If generated(i) = "RED" Or generated(i) = "BLACK" Or generated(i) = "ODD" Or generated(i) = "EVEN" Or generated(i) = "FROM18" Or generated(i) = "TO18" Then
-                        summs(indedx) *= 3
+                        saray(indedx) *= 1
                     Else If generated(i) = "3L" Or generated(i) = "2L" Or generated(i) = "1L" Or generated(i) = "F12" Or generated(i) = "S12" Or generated(i) = "T12" Then
-                        summs(indedx) *= 4
+                        saray(indedx) *= 2
                     Else
-                        summs(indedx) = 0
+                        saray(indedx) = -saray(indedx)
+                        fish += saray(indedx)
                     End If
                 End If
             Next
-            fish += summs.Count()
             
             
             display(Int(generated(0)))
