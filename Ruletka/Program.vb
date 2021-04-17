@@ -130,7 +130,7 @@ Module Program
         Console.BackgroundColor = ConsoleColor.Green
         Console.Clear()
         For i = 0 To 36
-            If i <> dropped
+            If ring(0,i) <> dropped
                 Console.ForegroundColor = colors(ring(1,i))
                 Console.Write(ring(0,i) & " ")
             Else
@@ -146,7 +146,7 @@ Module Program
         Console.WriteLine()
         For i = 3 To 36 Step 3
             temp = GetIndex(ringRank0, i)
-            If i <> ring(0, dropped)
+            If i <> dropped
                 Console.ForegroundColor = colors(ring(1,temp))
                 Console.Write(i & " ")
             Else
@@ -160,7 +160,7 @@ Module Program
         Console.WriteLine()
         For i = 2 To 36 Step 3
             temp = GetIndex(ringRank0, i)
-            If i <> ring(0, dropped)
+            If i <> dropped
                 Console.ForegroundColor = colors(ring(1,temp))
                 Console.Write(i & " ")
             Else
@@ -174,7 +174,7 @@ Module Program
         Console.WriteLine()
         For i = 1 To 36 Step 3
             temp = GetIndex(ringRank0, i)
-            If i <> ring(0, dropped)
+            If i <> dropped
                 Console.ForegroundColor = colors(ring(1,temp))
                 Console.Write(i & " ")
             Else
@@ -212,7 +212,7 @@ Module Program
         Console.WriteLine("Игра началась!")
         Dim fish As Long = 5000
         Dim isGaming As Boolean = True
-        Do while isGaming xor fish
+        Do while fish > 0
             
             
             
@@ -222,7 +222,7 @@ Module Program
             Console.WriteLine("Продолжить игру? (Y/n)")
             Dim temp As String = Console.ReadLine()
             If temp = "n" or temp = "N" Then
-                isGaming = False
+                Exit Sub
             Else IF temp = "" or temp = "y" or temp = "Y"
                 isGaming = True
             Else
@@ -242,21 +242,44 @@ Module Program
             For i = 0 To UBound(summ)
                 summs.Add(Int(summ(i)))
             Next
-            If Len(stav) <> Len(summs) Or summs.Sum() > fish Then Console.WriteLine("Ставки не корректны. Пропуск.") : stav.Clear() : summs.Clear()
+            If stav.count <> summs.count Or summs.ToArray.Sum() > fish Then
+                Console.WriteLine("Ставки не корректны. Пропуск.")
+                stav.Clear()
+                summs.Clear()
+                Continue Do
+            End If
             Console.WriteLine("Крутим колесо...")
             sleep(5)
-            display(Int(generated(1)))
+            display(Int(generated(0)))
+            Dim saray() As Integer = summs.ToArray()
             Dim indedx As Integer
-            For i = 0 To UBound(stav.ToArray())
-                If generated.Contains(stav.ToArray(i)) Then
+            For i = 0 To UBound(saray)
+                fish -= saray(i)
+            Next
+            For i = 0 To UBound(generated)
+                If stav.Contains(generated(i)) Then
                     indedx = stav.IndexOf(generated(i))
-                    
+                    If IsNumeric(generated(i))
+                        summs(indedx) *= 37
+                    Else If generated(i) = "RED" Or generated(i) = "BLACK" Or generated(i) = "ODD" Or generated(i) = "EVEN" Or generated(i) = "FROM18" Or generated(i) = "TO18" Then
+                        summs(indedx) *= 3
+                    Else If generated(i) = "3L" Or generated(i) = "2L" Or generated(i) = "1L" Or generated(i) = "F12" Or generated(i) = "S12" Or generated(i) = "T12" Then
+                        summs(indedx) *= 4
+                    Else
+                        summs(indedx) = 0
+                    End If
                 End If
             Next
+            fish += summs.Count()
             
             
             display(Int(generated(0)))
-            Console.WriteLine("")
+            Console.WriteLine()
+            Console.WriteLine("Выпало: ")
+            For i = 0 To UBound(generated)
+                Console.Write(generated(i) & " ")
+            Next
+            Console.WriteLine()
         Loop
         
     End Sub
