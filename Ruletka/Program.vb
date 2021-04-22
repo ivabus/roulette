@@ -236,42 +236,34 @@ Module Program
             Dim stav As New List(Of String)
             stav = Console.ReadLine().Split.ToList()
             Console.Write("Укажите суммы ставок: ")
-            Dim summs As New List(Of Integer)
             Dim summ() As String
             summ = Console.ReadLine().Split
+            Dim summs(UBound(summ)) As Integer
             For i = 0 To UBound(summ)
-                summs.Add(Int(summ(i)))
+                summs(i) = Int(summ(i))
             Next
-            If stav.count <> summs.count Or summs.ToArray.Sum() > fish Then
+            If stav.Count <> summs.Count Or summs.ToArray.Sum() > fish Then
                 Console.WriteLine("Ставки не корректны. Пропуск.")
-                stav.Clear()
-                summs.Clear()
                 Continue Do
             End If
             Console.WriteLine("Крутим колесо...")
-            sleep(5)
+            sleep(2)
             display(Int(generated(0)))
-            Dim saray() As Integer = summs.ToArray()
-            fish -= saray.Sum()
             Dim indedx As Integer
             For i = 0 To UBound(generated)
                 If stav.Contains(generated(i)) Then
                     indedx = stav.IndexOf(generated(i))
                     If IsNumeric(generated(i))
-                        saray(indedx) *= 35
+                        fish += summs(indedx) * 35
                     Else If generated(i) = "RED" Or generated(i) = "BLACK" Or generated(i) = "ODD" Or generated(i) = "EVEN" Or generated(i) = "FROM18" Or generated(i) = "TO18" Then
-                        saray(indedx) *= 1
+                        fish += summs(indedx) * 1
                     Else If generated(i) = "3L" Or generated(i) = "2L" Or generated(i) = "1L" Or generated(i) = "F12" Or generated(i) = "S12" Or generated(i) = "T12" Then
-                        saray(indedx) *= 2
+                        fish += summs(indedx) * 2
                     Else
-                        saray(indedx) = -saray(indedx)
-                        fish += saray(indedx)
+                        fish -= summs(indedx) * 2
                     End If
                 End If
             Next
-            
-            
-            display(Int(generated(0)))
             Console.WriteLine()
             Console.WriteLine("Выпало: ")
             For i = 0 To UBound(generated)
