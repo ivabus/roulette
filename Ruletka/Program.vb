@@ -30,12 +30,10 @@ Module Program
         If index < lBound OrElse index > uBound Then
             Throw New ArgumentOutOfRangeException( _
                 String.Format("Index must be from {0} to {1}.", lBound, uBound))
-
         Else
             Dim outArr(arrLen - 1) As T
             Array.Copy(arr, 0, outArr, 0, index)
             Array.Copy(arr, index + 1, outArr, index, uBound - index)
-
             Return outArr
         End If
     End Function
@@ -231,11 +229,6 @@ Module Program
         Dim fish As Long = 5000
         Dim isGaming As Boolean = True
         Do while fish > 0
-            
-            
-            
-            
-            
             Console.WriteLine("У Вас {0} фишек.", fish)
             Console.WriteLine("Продолжить игру? (Y/n)")
             Dim temp As String = Console.ReadLine()
@@ -247,7 +240,6 @@ Module Program
                 Console.WriteLine("Неверный ввод, продолжаем игру.")
             End If
             
-            
             Dim generated() As String = spinWheel()
             Console.Clear
             Console.Write("Делайте ставки: ")
@@ -256,6 +248,12 @@ Module Program
             Console.Write("Укажите суммы ставок: ")
             Dim summ() As String
             summ = Console.ReadLine().Split
+            For i = 0 To UBound(summ)
+                If not IsNumeric(summ(i)) Then
+                    Console.WriteLine("Ставки не корректны. Пропуск.")
+                    Continue Do
+                End If
+            Next
             Dim summs As New List(Of Integer)
             For i = 0 To UBound(summ)
                 summs.add(Int(summ(i)))
