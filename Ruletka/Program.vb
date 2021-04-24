@@ -22,6 +22,24 @@ Module Program
         Next
     End Function
     
+    Function RemoveAt(Of T)(ByVal arr As T(), ByVal index As Integer) As T()
+        Dim uBound = arr.GetUpperBound(0)
+        Dim lBound = arr.GetLowerBound(0)
+        Dim arrLen = uBound - lBound
+
+        If index < lBound OrElse index > uBound Then
+            Throw New ArgumentOutOfRangeException( _
+                String.Format("Index must be from {0} to {1}.", lBound, uBound))
+
+        Else
+            Dim outArr(arrLen - 1) As T
+            Array.Copy(arr, 0, outArr, 0, index)
+            Array.Copy(arr, index + 1, outArr, index, uBound - index)
+
+            Return outArr
+        End If
+    End Function
+    
     Sub sleep(d As Single)
         Dim t As Single = Timer
         Do while Timer - t < d
@@ -238,14 +256,20 @@ Module Program
             Console.Write("Укажите суммы ставок: ")
             Dim summ() As String
             summ = Console.ReadLine().Split
-            Dim summs(UBound(summ)) As Integer
+            Dim summs As New List(Of Integer)
             For i = 0 To UBound(summ)
-                summs(i) = Int(summ(i))
+                summs.add(Int(summ(i)))
             Next
             If stav.Count <> summs.Count Or summs.ToArray.Sum() > fish Then
                 Console.WriteLine("Ставки не корректны. Пропуск.")
                 Continue Do
             End If
+            For i = 0 To summs.Count - 1
+                If summs(i) < 0 Then
+                    Console.WriteLine("Ставки не корректны. Пропуск.")
+                    Continue Do
+                End If
+            Next
             Console.WriteLine("Крутим колесо...")
             sleep(2)
             display(Int(generated(0)))
@@ -254,15 +278,22 @@ Module Program
                 If stav.Contains(generated(i)) Then
                     indedx = stav.IndexOf(generated(i))
                     If IsNumeric(generated(i))
-                        fish += summs(indedx) * 35
+                        fish += summ(indedx) * 35
+                        stav.RemoveAt(indedx)
+                        summs.RemoveAt(indedx)
                     Else If generated(i) = "RED" Or generated(i) = "BLACK" Or generated(i) = "ODD" Or generated(i) = "EVEN" Or generated(i) = "FROM18" Or generated(i) = "TO18" Then
-                        fish += summs(indedx) * 1
+                        fish += summ(indedx) * 1
+                        stav.RemoveAt(indedx)
+                        summs.RemoveAt(indedx)
                     Else If generated(i) = "3L" Or generated(i) = "2L" Or generated(i) = "1L" Or generated(i) = "F12" Or generated(i) = "S12" Or generated(i) = "T12" Then
-                        fish += summs(indedx) * 2
-                    Else
-                        fish -= summs(indedx) * 2
+                        fish += summ(indedx) * 2
+                        stav.RemoveAt(indedx)
+                        summs.RemoveAt(indedx)
                     End If
                 End If
+            Next
+            For i = 0 To summs.Count - 1
+                fish -= summs(i)
             Next
             Console.WriteLine()
             Console.WriteLine("Выпало: ")
