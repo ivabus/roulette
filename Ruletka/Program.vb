@@ -22,6 +22,16 @@ Module Program
         Next
     End Function
     
+    Sub displayHistory(history() As Integer)
+        Console.Write("История выпадений (последние 10):")
+        Dim start As Integer = If(Ubound(history) > 9, Ubound(history) - 10, 0)
+        For i = start To UBound(history)
+            Console.ForegroundColor = colors(ring(1,getindex(ringRank0, history(i))))
+            Console.Write(history(i) & " ")
+        Next
+        Console.ForegroundColor = ConsoleColor.Black
+    End Sub
+    
     Function RemoveAt(Of T)(ByVal arr As T(), ByVal index As Integer) As T()
         Dim uBound = arr.GetUpperBound(0)
         Dim lBound = arr.GetLowerBound(0)
@@ -205,6 +215,7 @@ Module Program
     
     Sub rules()
         Console.Clear
+        Console.WriteLine("Рекомендуемое разрешение консоли: 100x35")
         Console.WriteLine("Правила:")
         Console.WriteLine("Игра представляет собой Европейскую рулетку. Игрок должен сделать ставку на определённую зону, будь то число, сектор, строка, чётность или цвет. Игрок может делать несколько ставок. Ставки вводятся в предоставленную зону через пробел.")
         Console.WriteLine("<число 0 - 36> - ставка на число (1:36).")
@@ -228,7 +239,11 @@ Module Program
         Console.WriteLine("Игра началась!")
         Dim fish As Long = 5000
         Dim isGaming As Boolean = True
+        Dim history As New List(Of Integer)
+        
         Do while fish > 0
+            Console.ForegroundColor = ConsoleColor.Black
+            Console.WriteLine()
             Console.WriteLine("У Вас {0} фишек.", fish)
             Console.WriteLine("Продолжить игру? (Y/n)")
             Dim temp As String = Console.ReadLine()
@@ -242,6 +257,7 @@ Module Program
             
             Dim generated() As String = spinWheel()
             Console.Clear
+            history.Add(generated(0))
             Console.Write("Делайте ставки: ")
             Dim stav As New List(Of String)
             stav = Console.ReadLine().Split.ToList()
@@ -299,6 +315,7 @@ Module Program
                 Console.Write(generated(i) & " ")
             Next
             Console.WriteLine()
+            displayHistory(history.ToArray())
         Loop
         
     End Sub
