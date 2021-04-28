@@ -23,7 +23,7 @@ Module Program
     End Function
     
     Sub displayHistory(history() As Integer)
-        Console.Write("История выпадений (последние 10):")
+        Console.Write("История выпадений (последние 10): ")
         Dim start As Integer = If(Ubound(history) > 9, Ubound(history) - 10, 0)
         For i = start To UBound(history)
             Console.ForegroundColor = colors(ring(1,getindex(ringRank0, history(i))))
@@ -155,7 +155,19 @@ Module Program
     Sub display(dropped As Integer)
         Console.BackgroundColor = ConsoleColor.Green
         Console.Clear()
-        For i = 0 To 36
+        If ring(0,0) <> dropped
+            Console.BackgroundColor = ConsoleColor.Black
+            Console.ForegroundColor = colors(ring(1,0))
+            Console.Write(ring(0,0) & " ")
+            Console.BackgroundColor = ConsoleColor.Green
+        Else
+            Console.BackgroundColor = ConsoleColor.White
+            Console.ForegroundColor = ConsoleColor.Black
+            Console.Write(ring(0, 0))
+            Console.BackgroundColor = ConsoleColor.Green
+            Console.Write(" ")
+        End If
+        For i = 1 To 36
             If ring(0,i) <> dropped
                 Console.ForegroundColor = colors(ring(1,i))
                 Console.Write(ring(0,i) & " ")
@@ -174,48 +186,58 @@ Module Program
             temp = GetIndex(ringRank0, i)
             If i <> dropped
                 Console.ForegroundColor = colors(ring(1,temp))
-                Console.Write(i & " ")
+                Console.Write("{0,2:G} ", i)
             Else
                 Console.BackgroundColor = ConsoleColor.White
                 Console.ForegroundColor = colors(ring(1,temp))
-                Console.Write(i)
+                Console.Write("{0,2:G}", i)
                 Console.BackgroundColor = ConsoleColor.Green
                 Console.Write(" ")
             End If
         Next
+        Console.ForegroundColor = ConsoleColor.Black
+        Console.Write("    3L")
         Console.WriteLine()
         For i = 2 To 36 Step 3
             temp = GetIndex(ringRank0, i)
             If i <> dropped
                 Console.ForegroundColor = colors(ring(1,temp))
-                Console.Write(i & " ")
+                Console.Write("{0,2:G} ", i)
             Else
                 Console.BackgroundColor = ConsoleColor.White
                 Console.ForegroundColor = colors(ring(1,temp))
-                Console.Write(i)
+                Console.Write("{0,2:G}", i)
                 Console.BackgroundColor = ConsoleColor.Green
                 Console.Write(" ")
             End If
         Next
+        Console.ForegroundColor = ConsoleColor.Black
+        Console.Write("    2L")
         Console.WriteLine()
         For i = 1 To 36 Step 3
             temp = GetIndex(ringRank0, i)
             If i <> dropped
                 Console.ForegroundColor = colors(ring(1,temp))
-                Console.Write(i & " ")
+                Console.Write("{0,2:G} ", i)
             Else
                 Console.BackgroundColor = ConsoleColor.White
                 Console.ForegroundColor = colors(ring(1,temp))
-                Console.Write(i)
+                Console.Write("{0,2:G}", i)
                 Console.BackgroundColor = ConsoleColor.Green
                 Console.Write(" ")
             End If
         Next
+        Console.ForegroundColor = ConsoleColor.Black
+        Console.Write("    1L")
+        Console.WriteLine()
+        Console.WriteLine("    F12    |    S12    |    T12    ")
+        Console.ForegroundColor = ConsoleColor.Black
     End Sub
     
     Sub rules()
         Console.Clear
         Console.WriteLine("Рекомендуемое разрешение консоли: 100x35")
+        Console.WriteLine("Минимальное разрешение консоли: 100х20")
         Console.WriteLine("Правила:")
         Console.WriteLine("Игра представляет собой Европейскую рулетку. Игрок должен сделать ставку на определённую зону, будь то число, сектор, строка, чётность или цвет. Игрок может делать несколько ставок. Ставки вводятся в предоставленную зону через пробел.")
         Console.WriteLine("<число 0 - 36> - ставка на число (1:36).")
@@ -316,6 +338,7 @@ Module Program
             Next
             Console.WriteLine()
             displayHistory(history.ToArray())
+            Console.ForegroundColor = ConsoleColor.Black
         Loop
         
     End Sub
