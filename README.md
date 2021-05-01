@@ -8,6 +8,6 @@
 
 Игра представляет собой Европейскую рулетку в консоли.
 
-Протестировано на macOS-arm (через rosetta 2), macOS-x64, linux-x64, linux-arm
+Протестировано на macOS-arm (через Rosetta 2), macOS-x64, linux-x64, linux-arm
 
 Бинарные файлы подготовлены для macOS-x64, linux-x64, linux-arm, win-x64
