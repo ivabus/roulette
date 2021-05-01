@@ -10,4 +10,4 @@
 
 Протестировано на macOS-arm (через Rosetta 2), macOS-x64, linux-x64, linux-arm
 
-Бинарные файлы подготовлены для macOS-x64, linux-x64, linux-arm, win-x64
+Исполняемые файлы подготовлены для macOS-x64, linux-x64, linux-arm, win-x64
