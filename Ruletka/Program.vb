@@ -23,13 +23,14 @@ Module Program
     End Function
     
     Sub displayHistory(history() As Integer)
+        Console.ForegroundColor = ConsoleColor.DarkBlue
         Console.Write("История выпадений (последние 10): ")
         Dim start As Integer = If(Ubound(history) > 9, Ubound(history) - 10, 0)
         For i = start To UBound(history)
             Console.ForegroundColor = colors(ring(1,getindex(ringRank0, history(i))))
             Console.Write(history(i) & " ")
         Next
-        Console.ForegroundColor = ConsoleColor.Black
+        Console.ForegroundColor = ConsoleColor.DarkBlue
     End Sub
     
     Function RemoveAt(Of T)(ByVal arr As T(), ByVal index As Integer) As T()
@@ -55,6 +56,7 @@ Module Program
     End Sub
     
     Sub intro()
+        Console.ForegroundColor = ConsoleColor.DarkBlue
         Console.SetCursorPosition(Console.WindowWidth \ 2 - Len(intr(0))\2,Console.WindowHeight()\2 - UBound(intr) + 3)
         For i = 0 To UBound(intr)
             Console.WriteLine(intr(i))
@@ -195,7 +197,7 @@ Module Program
                 Console.Write(" ")
             End If
         Next
-        Console.ForegroundColor = ConsoleColor.Black
+        Console.ForegroundColor = ConsoleColor.DarkBlue
         Console.Write("    3L")
         Console.WriteLine()
         For i = 2 To 36 Step 3
@@ -211,7 +213,7 @@ Module Program
                 Console.Write(" ")
             End If
         Next
-        Console.ForegroundColor = ConsoleColor.Black
+        Console.ForegroundColor = ConsoleColor.DarkBlue
         Console.Write("    2L")
         Console.WriteLine()
         For i = 1 To 36 Step 3
@@ -227,15 +229,16 @@ Module Program
                 Console.Write(" ")
             End If
         Next
-        Console.ForegroundColor = ConsoleColor.Black
+        Console.ForegroundColor = ConsoleColor.DarkBlue
         Console.Write("    1L")
         Console.WriteLine()
         Console.WriteLine("    F12    |    S12    |    T12    ")
-        Console.ForegroundColor = ConsoleColor.Black
+        Console.ForegroundColor = ConsoleColor.DarkBlue
     End Sub
     
     Sub rules()
         Console.Clear
+        Console.ForegroundColor = ConsoleColor.DarkBlue
         Console.WriteLine("Рекомендуемое разрешение консоли: 100x35")
         Console.WriteLine("Минимальное разрешение консоли: 100х20")
         Console.WriteLine("Правила:")
@@ -264,7 +267,7 @@ Module Program
         Dim history As New List(Of Integer)
         
         Do while fish > 0
-            Console.ForegroundColor = ConsoleColor.Black
+            Console.ForegroundColor = ConsoleColor.DarkBlue
             Console.WriteLine()
             Console.WriteLine("У Вас {0} фишек.", fish)
             Console.WriteLine("Продолжить игру? (Y/n)")
@@ -309,6 +312,7 @@ Module Program
             Console.WriteLine("Крутим колесо...")
             sleep(2)
             display(Int(generated(0)))
+            Console.ForegroundColor = ConsoleColor.DarkBlue
             Dim indedx As Integer
             For i = 0 To UBound(generated)
                 If stav.Contains(generated(i)) Then
@@ -338,7 +342,7 @@ Module Program
             Next
             Console.WriteLine()
             displayHistory(history.ToArray())
-            Console.ForegroundColor = ConsoleColor.Black
+            Console.ForegroundColor = ConsoleColor.DarkBlue
         Loop
         
     End Sub
@@ -347,7 +351,7 @@ Module Program
         Console.BackgroundColor = ConsoleColor.Green
         Randomize()
         Console.Clear()
-        Console.ForegroundColor = ConsoleColor.Black
+        Console.ForegroundColor = ConsoleColor.DarkBlue
         intro()
         'Console.SetWindowSize(108,100)
         Console.WriteLine("Игра Рулетка")
