@@ -2,7 +2,7 @@
 
     <PropertyGroup>
         <OutputType>Exe</OutputType>
-        <RootNamespace>Ruletka</RootNamespace>
+        <RootNamespace>roulette</RootNamespace>
         <TargetFramework>net5.0</TargetFramework>
     </PropertyGroup>
 
