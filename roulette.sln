@@ -1,6 +1,6 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-Project("{F184B08F-C81C-45F6-A57F-5ABD9991F28F}") = "Ruletka", "Ruletka\Ruletka.vbproj", "{584852C1-EB9C-46A2-976A-0C311192ACFE}"
+Project("{F184B08F-C81C-45F6-A57F-5ABD9991F28F}") = "roulette", "roulette\roulette.vbproj", "{584852C1-EB9C-46A2-976A-0C311192ACFE}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
