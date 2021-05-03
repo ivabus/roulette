@@ -347,11 +347,10 @@ Module Program
 	
 	Sub Main()
 		Console.BackgroundColor = ConsoleColor.Green
+		Console.ForegroundColor = ConsoleColor.DarkBlue
 		Randomize()
 		Console.Clear()
-		Console.ForegroundColor = ConsoleColor.DarkBlue
 		intro()
-		'Console.SetWindowSize(108,100)
 		Console.WriteLine("Игра Рулетка")
 		Console.WriteLine("1) Начать игру")
 		Console.WriteLine("2) Ознакомиться с правилами")
@@ -359,20 +358,17 @@ Module Program
 		Console.Write(">>> ")
 		Dim input As Char = Console.ReadKey.KeyChar
 		Dim n As Integer = If(Int(input.ToString()) = 1 Or Int(input.ToString()) = 2 Or Int(input.ToString()) = 3, Int(input.ToString()), 0)
-		Dim history As New List(Of Integer)
-		Dim historyC As New List(Of Integer)
 		Select Case n
 			Case 0
 				Console.WriteLine()
 				Console.WriteLine("Неправильный ввод!")
 				sleep(5)
-				Main
+				Main()
 			Case 1
 				Console.Clear
 				game()
 				Main()
 			Case 2
-				Console.Clear
 				rules()
 				Main()
 			Case 3
