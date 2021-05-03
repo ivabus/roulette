@@ -1,5 +1,4 @@
 Imports System
-Imports System.Formats.Asn1
 
 Module Program
     Dim ring(,) As Integer = {{0, 32, 15, 19, 4, 21, 2, 25, 17, 34, 6, 27, 13, 36, 11, 30, 8, 23, 10, 5, 24, 16, 33, 1, 20, 14, 31, 9, 22,18, 29, 7, 28, 12, 35, 3, 26},
@@ -66,17 +65,17 @@ Module Program
         'sleep(5)
         Console.SetCursorPosition(0,0)
         For i = 0 To (Console.WindowHeight()\2 - UBound(intr) + 2) \ 2
-            Console.Write(StrDup(Console.WindowWidth, "#"))
+            Console.WriteLine(StrDup(Console.WindowWidth-1, "#"))
             sleep(0.0888)
         Next
         For i = 0 To Console.WindowHeight - (Console.WindowHeight()\2 - UBound(intr) + 2) - 3
             Console.Write(StrDup((Console.WindowWidth \ 2 - Len(intr(0)) \ 2) \ 2, "#")) 
             Console.SetCursorPosition(Console.WindowWidth - (Console.WindowWidth \ 2 - Len(intr(0)) \ 2) \ 2, (Console.GetCursorPosition().Item2))
-            Console.WriteLine(StrDup((Console.WindowWidth \ 2 - Len(intr(0)) \ 2) \ 2 - 1 , "#"))
+            Console.WriteLine(StrDup((Console.WindowWidth \ 2 - Len(intr(0)) \ 2) \ 2 - 1, "#"))
             sleep(0.0888)
         Next
         For i = 0 To (Console.WindowHeight()\2 - UBound(intr) + 2) \ 2
-            Console.Write(StrDup(Console.WindowWidth, "#"))
+            Console.WriteLine(StrDup(Console.WindowWidth-1, "#"))
             sleep(0.0888)
         Next
         Dim entr As String = "   Нажмите любую кнопку, чтобы начать игру! "
@@ -268,9 +267,8 @@ Module Program
         
         Do while fish > 0
             Console.ForegroundColor = ConsoleColor.DarkBlue
-            Console.WriteLine()
             Console.WriteLine("У Вас {0} фишек.", fish)
-            Console.WriteLine("Продолжить игру? (Y/n)")
+            Console.Write("Продолжить игру? (Y/n) >>> ")
             Dim temp As String = Console.ReadLine()
             If temp = "n" or temp = "N" Then
                 Exit Sub
@@ -283,11 +281,13 @@ Module Program
             Dim generated() As String = spinWheel()
             Console.Clear
             history.Add(generated(0))
-            Console.Write("Делайте ставки: ")
+            Console.Write("Делайте ставки ")
             Dim stav As New List(Of String)
+            Console.Write(">>> ")
             stav = Console.ReadLine().Split.ToList()
-            Console.Write("Укажите суммы ставок: ")
+            Console.Write("Укажите суммы ставок ")
             Dim summ() As String
+            Console.Write(">>> ")
             summ = Console.ReadLine().Split
             For i = 0 To UBound(summ)
                 If not IsNumeric(summ(i)) Then
@@ -343,8 +343,11 @@ Module Program
             Console.WriteLine()
             displayHistory(history.ToArray())
             Console.ForegroundColor = ConsoleColor.DarkBlue
+            Console.WriteLine()
         Loop
-        
+        Console.WriteLine("У Вас кончились фишки, игра закончена.")
+        Console.WriteLine("Нажмите любую кнопку, чтобы перезапустить игру.")
+        Console.ReadKey()
     End Sub
     
     Sub Main()
@@ -358,6 +361,7 @@ Module Program
         Console.WriteLine("1) Начать игру")
         Console.WriteLine("2) Ознакомиться с правилами")
         Console.WriteLine("3) Выйти из игры")
+        Console.Write(">>> ")
         Dim input As Char = Console.ReadKey.KeyChar
         Dim n As Integer = If(Int(input.ToString()) = 1 Or Int(input.ToString()) = 2 Or Int(input.ToString()) = 3, Int(input.ToString()), 0)
         Dim history As New List(Of Integer)
