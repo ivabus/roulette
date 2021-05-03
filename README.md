@@ -1,4 +1,4 @@
-# Рулетка [![.NET](https://github.com/BushchikIvan/roulette/actions/workflows/dotnet.yml/badge.svg)](https://github.com/BushchikIvan/roulette/actions/workflows/dotnet.yml)
+# Рулетка [![Build](https://github.com/BushchikIvan/roulette/actions/workflows/dotnet.yml/badge.svg)](https://github.com/BushchikIvan/roulette/actions/workflows/dotnet.yml)
 
 ## Игра с открытым исходным кодом на VB.NET
 
