@@ -16,7 +16,7 @@ Module Program
 								"# #    #   #  #   #  #      #        #      #    #     ",
 								"#  #   #   #  #   #  #      #        #      #    #     ",
 								"#   #   ###    ###   #####  #####    #      #    ##### "}
-	Function GetIndex(mass() As Integer, obj As Integer) As Integer
+	Function GetIndex(mass() As Integer, obj As Integer) As Integer 'Функция получает индекс объекта в массиве
 		For i = 0 To UBound(mass)
 			If mass(i) = obj Then Return i
 		Next
@@ -26,7 +26,7 @@ Module Program
 	Sub displayHistory(history() As Integer)
 		Console.ForegroundColor = ConsoleColor.DarkBlue
 		Console.Write("История выпадений (последние 15): ")
-		For i = If(Ubound(history) > 14, Ubound(history) - 15, 0) To UBound(history)
+		For i = If(Ubound(history) > 14, Ubound(history) - 15, 0) To UBound(history) 
 			Console.ForegroundColor = colors(ring(1,getindex(ringRank0, history(i))))
 			Console.Write(history(i) & " ")
 		Next
@@ -341,7 +341,7 @@ Module Program
 			Console.ForegroundColor = ConsoleColor.DarkBlue
 			Console.WriteLine()
 		Loop
-		Console.WriteLine("У Вас кончились фишки, игра закончена.")
+		Console.WriteLine("У Вас кончились фишки, игра окончена.")
 		Console.WriteLine("Нажмите любую кнопку, чтобы перезапустить игру.")
 		Console.ReadKey()
 	End Sub
