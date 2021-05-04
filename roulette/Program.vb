@@ -16,6 +16,7 @@ Module Program
 								"# #    #   #  #   #  #      #        #      #    #     ",
 								"#  #   #   #  #   #  #      #        #      #    #     ",
 								"#   #   ###    ###   #####  #####    #      #    ##### "}
+	
 	Function GetIndex(mass() As Integer, obj As Integer) As Integer 'Функция получает индекс объекта в массиве
 		For i = 0 To UBound(mass)
 			If mass(i) = obj Then Return i
@@ -152,6 +153,7 @@ Module Program
 	Sub display(dropped As Integer)
 		Console.BackgroundColor = ConsoleColor.Green
 		Console.Clear()
+
 		If ring(0,0) <> dropped
 			Console.BackgroundColor = ConsoleColor.Black
 			Console.ForegroundColor = colors(ring(1,0))
@@ -164,6 +166,7 @@ Module Program
 			Console.BackgroundColor = ConsoleColor.Green
 			Console.Write(" ")
 		End If
+
 		For i = 1 To 36
 			If ring(0,i) <> dropped
 				Console.ForegroundColor = colors(ring(1,i))
@@ -176,9 +179,11 @@ Module Program
 				Console.Write(" ")
 			End If
 		Next
+
 		Dim temp As Integer
 		Console.WriteLine()
 		Console.WriteLine()
+
 		For i = 3 To 36 Step 3
 			temp = GetIndex(ringRank0, i)
 			If i <> dropped
@@ -192,9 +197,11 @@ Module Program
 				Console.Write(" ")
 			End If
 		Next
+
 		Console.ForegroundColor = ConsoleColor.DarkBlue
 		Console.Write("    3L")
 		Console.WriteLine()
+
 		For i = 2 To 36 Step 3
 			temp = GetIndex(ringRank0, i)
 			If i <> dropped
@@ -208,9 +215,11 @@ Module Program
 				Console.Write(" ")
 			End If
 		Next
+
 		Console.ForegroundColor = ConsoleColor.DarkBlue
 		Console.Write("    2L")
 		Console.WriteLine()
+
 		For i = 1 To 36 Step 3
 			temp = GetIndex(ringRank0, i)
 			If i <> dropped
@@ -224,6 +233,7 @@ Module Program
 				Console.Write(" ")
 			End If
 		Next
+
 		Console.ForegroundColor = ConsoleColor.DarkBlue
 		Console.Write("    1L")
 		Console.WriteLine()
@@ -277,6 +287,7 @@ Module Program
 			Dim generated() As String = spinWheel()
 			Console.Clear
 			history.Add(generated(0))
+			
 			Console.Write("Делайте ставки ")
 			Dim stav As New List(Of String)
 			Console.Write(">>> ")
