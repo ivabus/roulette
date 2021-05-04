@@ -2,15 +2,29 @@
 
 ## Игра с открытым исходным кодом на VB.NET
 
-#### Создатель и сопроводитель: Иван Бущик <ivabus06@yandex.ru>
+Создатель и сопроводитель: Иван Бущик <ivabus06@yandex.ru>
 
-#### Лицензия: GNU GPLv3
+Лицензия: GNU GPLv3
 
 Игра представляет собой Европейскую рулетку в консоли.
 
-Протестировано на macOS-arm (через Rosetta 2), macOS-x64, linux-x64, linux-arm
+Протестировано на macOS-arm (через Rosetta 2), macOS-x64, linux-x64, linux-arm.
 
-Исполняемые файлы подготовлены для macOS-x64, linux-x64, linux-arm, win-x64
+## Сборка
+
+Рекомендуется dotnet-sdk >= 5.
+
+### В разработке
+
+    git clone https://github.com/BushchikIvan/roulette
+    cd roulette
+    dotnet build
+
+### Стабильный выпуск
+
+Загрузите последний выпуск, распакуйте, соберите с помощью dotnet build
+
+## Перевод / translation
 
 Игра на данном этапе разработки только на русском языке, перевод на английский планируется.
 
