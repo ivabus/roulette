@@ -114,7 +114,7 @@ Module Program
 		
 		whatDropped.Add(ring(0,dropped).ToString())
 		
-		If dropped = 0 Then return whatDropped
+		If dropped = 0 Then return whatDropped.ToArray()
 		If ring(0, dropped) mod 2 = 0 And dropped > 0
 			whatDropped.Add("EVEN")
 		Else
