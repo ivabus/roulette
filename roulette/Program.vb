@@ -28,7 +28,7 @@ Module Program
 	Sub displayHistory(history() As Integer)
 		Console.ForegroundColor = ConsoleColor.DarkBlue
 		Console.Write("История выпадений (последние 15): ")
-		For i = If(Ubound(history) > 14, Ubound(history) - 15, 0) To UBound(history) 
+		For i = If(Ubound(history) > 14, Ubound(history) - 14, 0) To UBound(history) 
 			Console.ForegroundColor = colors(ring(1,getindex(ringRank0, history(i))))
 			Console.Write(history(i) & " ")
 		Next
@@ -293,7 +293,7 @@ Module Program
 			Console.Write("Делайте ставки ")
 			Dim stav As New List(Of String)
 			Console.Write(">>> ")
-			stav = Console.ReadLine().Split.ToList()
+			stav = UCase(Console.ReadLine()).Split.ToList()
 			Console.Write("Укажите суммы ставок ")
 			Dim summ() As String
 			Console.Write(">>> ")
@@ -345,7 +345,7 @@ Module Program
 				fish -= summs(i)
 			Next
 			Console.WriteLine()
-			Console.WriteLine("Выпало: ")
+			Console.Write("Выпало: ")
 			For i = 0 To UBound(generated)
 				Console.Write(generated(i) & " ")
 			Next
