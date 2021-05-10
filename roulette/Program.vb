@@ -259,8 +259,8 @@ Module Program
 		Console.WriteLine("Игрок изначально получает 5000 фишек.")
 		Console.WriteLine("После того, как игрок укажет, на что ставит, он указывает количество фишек на каждую ставку через пробел.")
 		Console.WriteLine("Например:")
-		Console.WriteLine("На что ставите: 0 16 2L T12 RED ODD")
-		Console.WriteLine("Сколько ставите: 100 50 500 500 1000 1000")
+		Console.WriteLine("Делайте ставки >>> 0 16 2L T12 RED ODD")
+		Console.WriteLine("Укажите суммы ставок >>> 100 50 500 500 1000 1000")
 		Console.WriteLine("ВНИМАНИЕ! Количество ставок должно совпадать с количеством фишек, которые ставите, в примере 6 = 6.")
 		Console.WriteLine("Или просто нажмите ENTER, чтобы пропустить ставку.")
 		Console.WriteLine("Удачи!")
@@ -290,13 +290,11 @@ Module Program
 			Console.Clear
 			history.Add(generated(0))
 			
-			Console.Write("Делайте ставки ")
+			Console.Write("Делайте ставки >>> ")
 			Dim stav As New List(Of String)
-			Console.Write(">>> ")
 			stav = UCase(Console.ReadLine()).Split.ToList()
-			Console.Write("Укажите суммы ставок ")
+			Console.Write("Укажите суммы ставок >>> ")
 			Dim summ() As String
-			Console.Write(">>> ")
 			summ = Console.ReadLine().Split
 			For i = 0 To UBound(summ)
 				If not IsNumeric(summ(i)) Then
