@@ -13,7 +13,8 @@
 
 ## Сборка
 
-Требования macOS | Linux, git
+Требования macOS | Linux, git, цветной терминал.
+
 Рекомендуется dotnet-sdk >= 5.
 
     git clone https://github.com/BushchikIvan/roulette
