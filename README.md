@@ -9,20 +9,15 @@
 Игра представляет собой Европейскую рулетку в консоли.
 
 Протестировано на macOS-arm (через Rosetta 2), macOS-x64, linux-x64, linux-arm.
+В данный момент нет деления на стабильную и нестабильную версию.
 
 ## Сборка
 
 Рекомендуется dotnet-sdk >= 5.
 
-### В разработке
-
     git clone https://github.com/BushchikIvan/roulette
     cd roulette
     dotnet build
-
-### Стабильный выпуск
-
-Загрузите последний выпуск, распакуйте, соберите с помощью dotnet build
 
 ## Перевод / translation
 
