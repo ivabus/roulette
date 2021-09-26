@@ -13,6 +13,7 @@
 
 ## Сборка
 
+Требования macOS | Linux, git
 Рекомендуется dotnet-sdk >= 5.
 
     git clone https://github.com/BushchikIvan/roulette
