@@ -270,7 +270,6 @@ Module Program
 	Sub game()
 		Console.WriteLine("Игра началась!")
 		Dim fish As Long = 5000
-		Dim isGaming As Boolean = True
 		Dim history As New List(Of Integer)
 		
 		Do while fish > 0
@@ -281,7 +280,7 @@ Module Program
 			If temp = "n" or temp = "N" Then
 				Exit Sub
 			Else IF temp = "" or temp = "y" or temp = "Y"
-				isGaming = True
+				Continue
 			Else
 				Console.WriteLine("Неверный ввод, продолжаем игру.")
 			End If
@@ -290,12 +289,12 @@ Module Program
 			Console.Clear
 			history.Add(generated(0))
 			
-			Console.Write("Делайте ставки:
->>> ")
+			Console.WriteLine("Делайте ставки:")
+			Console.Write(">>> ")
 			Dim stav As New List(Of String)
 			stav = UCase(Console.ReadLine()).Split.ToList()
-			Console.Write("Укажите суммы ставок:
->>> ")
+			Console.WriteLine("Укажите суммы ставок:")
+			Console.Write(">>> ")
 			Dim summ() As String
 			summ = Console.ReadLine().Split
 			For i = 0 To UBound(summ)
