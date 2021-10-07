@@ -7,7 +7,7 @@ Module Program
 	Dim colors() As ConsoleColor = {ConsoleColor.White, ConsoleColor.Red, ConsoleColor.Black}
 	Dim ringRank0() As Integer = {0, 32, 15, 19, 4, 21, 2, 25, 17, 34, 6, 27, 13, 36, 11, 30, 8, 23, 10, 5, 24, 16, 33, 1, 20, 14, 31, 9, 22,18, 29, 7, 28, 12, 35, 3, 26}
 	'ringRank0 нужен, чтобы было удобно подавать массив в поиск индекса
-	Dim intr() As String = {
+	Dim logo() As String = {
 								"####    ###   #   #  #      #####  #####  #####  #####", 
 								"#   #  #   #  #   #  #      #        #      #    #     ",
 								"#   #  #   #  #   #  #      #        #      #    #     ",
@@ -53,36 +53,36 @@ Module Program
 	
 	Sub intro()
 		Console.ForegroundColor = ConsoleColor.DarkBlue
-		Console.SetCursorPosition(Console.WindowWidth \ 2 - Len(intr(0))\2,Console.WindowHeight()\2 - UBound(intr) + 3)
-		For i = 0 To UBound(intr)
-			Console.WriteLine(intr(i))
-			Console.SetCursorPosition(Console.WindowWidth \ 2 - Len(intr(0))\2, Console.GetCursorPosition().Item2)
+		Console.SetCursorPosition(Console.WindowWidth \ 2 - Len(logo(0))\2,Console.WindowHeight()\2 - UBound(logo) + 3)
+		For i = 0 To UBound(logo)
+			Console.WriteLine(logo(i))
+			Console.SetCursorPosition(Console.WindowWidth \ 2 - Len(logo(0))\2, Console.GetCursorPosition().Item2)
 			sleep(0.04444)
 		Next
 		'sleep(5)
 		Console.SetCursorPosition(0,0)
-		For i = 0 To (Console.WindowHeight()\2 - UBound(intr) + 2) \ 2
+		For i = 0 To (Console.WindowHeight()\2 - UBound(logo) + 2) \ 2
 			Console.WriteLine(StrDup(Console.WindowWidth-1, "#"))
 			sleep(0.04444)
 		Next
-		For i = 0 To Console.WindowHeight - (Console.WindowHeight()\2 - UBound(intr) + 2) - 3
-			Console.Write(StrDup((Console.WindowWidth \ 2 - Len(intr(0)) \ 2) \ 2, "#")) 
-			Console.SetCursorPosition(Console.WindowWidth - (Console.WindowWidth \ 2 - Len(intr(0)) \ 2) \ 2, (Console.GetCursorPosition().Item2))
-			Console.WriteLine(StrDup((Console.WindowWidth \ 2 - Len(intr(0)) \ 2) \ 2 - 1, "#"))
+		For i = 0 To Console.WindowHeight - (Console.WindowHeight()\2 - UBound(logo) + 2) - 3
+			Console.Write(StrDup((Console.WindowWidth \ 2 - Len(logo(0)) \ 2) \ 2, "#")) 
+			Console.SetCursorPosition(Console.WindowWidth - (Console.WindowWidth \ 2 - Len(logo(0)) \ 2) \ 2, (Console.GetCursorPosition().Item2))
+			Console.WriteLine(StrDup((Console.WindowWidth \ 2 - Len(logo(0)) \ 2) \ 2 - 1, "#"))
 			sleep(0.04444)
 		Next
-		For i = 0 To (Console.WindowHeight()\2 - UBound(intr) + 2) \ 2 - 1
+		For i = 0 To (Console.WindowHeight()\2 - UBound(logo) + 2) \ 2 - 1
 			Console.WriteLine(StrDup(Console.WindowWidth-1, "#"))
 			sleep(0.04444)
 		Next
 		Dim entr As String = "   Нажмите любую кнопку, чтобы начать игру! "
-		Console.SetCursorPosition((Console.WindowWidth \ 2) - Len(entr) \ 2,Console.WindowHeight - (Console.WindowHeight()\2 - UBound(intr) + 2) \ 4 - 3)
+		Console.SetCursorPosition((Console.WindowWidth \ 2) - Len(entr) \ 2,Console.WindowHeight - (Console.WindowHeight()\2 - UBound(logo) + 2) \ 4 - 3)
 		Console.Write(StrDup(Len(entr) + 2, " "))
 		
-		Console.SetCursorPosition((Console.WindowWidth \ 2) - Len(entr) \ 2,Console.WindowHeight - (Console.WindowHeight()\2 - UBound(intr) + 2) \ 4 - 2)
+		Console.SetCursorPosition((Console.WindowWidth \ 2) - Len(entr) \ 2,Console.WindowHeight - (Console.WindowHeight()\2 - UBound(logo) + 2) \ 4 - 2)
 		Console.Write(entr & "  ")
 		
-		Console.SetCursorPosition((Console.WindowWidth \ 2) - Len(entr) \ 2,Console.WindowHeight - (Console.WindowHeight()\2 - UBound(intr) + 2) \ 4 - 1)
+		Console.SetCursorPosition((Console.WindowWidth \ 2) - Len(entr) \ 2,Console.WindowHeight - (Console.WindowHeight()\2 - UBound(logo) + 2) \ 4 - 1)
 		Console.Write(StrDup(Len(entr) + 2, " "))
 		Console.SetCursorPosition(0,0)
 		Console.ReadKey
