@@ -275,7 +275,8 @@ Module Program
 		Do while fish > 0
 			Console.ForegroundColor = ConsoleColor.DarkBlue
 			Console.WriteLine("У Вас {0} фишек.", fish)
-			Console.Write("Продолжить игру? (Y/n) >>> ")
+			Console.WriteLine("Продолжить игру? (Y/n):")
+			Console.Write(">>> ")
 			Dim temp As String = Console.ReadLine()
 			If temp = "n" or temp = "N" Then
 				Exit Sub
