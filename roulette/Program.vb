@@ -328,17 +328,19 @@ Module Program
 					indedx = stav.IndexOf(generated(i))
 					If IsNumeric(generated(i))
 						fish += summ(indedx) * 35
-						stav.RemoveAt(indedx)
-						summs.RemoveAt(indedx)
+						'stav.RemoveAt(indedx)
+						'summs.RemoveAt(indedx)
 					Else If generated(i) = "RED" Or generated(i) = "BLACK" Or generated(i) = "ODD" Or generated(i) = "EVEN" Or generated(i) = "FROM18" Or generated(i) = "TO18" Then
 						fish += summ(indedx) * 1
-						stav.RemoveAt(indedx)
-						summs.RemoveAt(indedx)
+						'stav.RemoveAt(indedx)
+						'summs.RemoveAt(indedx)
 					Else If generated(i) = "3L" Or generated(i) = "2L" Or generated(i) = "1L" Or generated(i) = "F12" Or generated(i) = "S12" Or generated(i) = "T12" Then
 						fish += summ(indedx) * 2
-						stav.RemoveAt(indedx)
-						summs.RemoveAt(indedx)
+						'stav.RemoveAt(indedx)
+						'summs.RemoveAt(indedx)
 					End If
+					stav.RemoveAt(indedx)
+					summs.RemoveAt(indedx)
 				End If
 			Next
 			For i = 0 To summs.Count - 1
