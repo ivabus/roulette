@@ -290,10 +290,12 @@ Module Program
 			Console.Clear
 			history.Add(generated(0))
 			
-			Console.Write("Делайте ставки >>> ")
+			Console.Write("Делайте ставки:
+>>> ")
 			Dim stav As New List(Of String)
 			stav = UCase(Console.ReadLine()).Split.ToList()
-			Console.Write("Укажите суммы ставок >>> ")
+			Console.Write("Укажите суммы ставок:
+>>> ")
 			Dim summ() As String
 			summ = Console.ReadLine().Split
 			For i = 0 To UBound(summ)
@@ -353,7 +355,7 @@ Module Program
 			Console.WriteLine()
 		Loop
 		Console.WriteLine("У Вас кончились фишки, игра окончена.")
-		Console.WriteLine("Нажмите любую кнопку, чтобы перезапустить игру.")
+		Console.WriteLine("Нажмите любую кнопку, чтобы выйти в меню.")
 		Console.ReadKey()
 	End Sub
 	
