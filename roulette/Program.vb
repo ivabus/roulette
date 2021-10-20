@@ -281,7 +281,7 @@ Module Program
 			If temp = "n" or temp = "N" Then
 				Exit Sub
 			Else IF temp = "" or temp = "y" or temp = "Y"
-				Continue
+				Console.Write()
 			Else
 				Console.WriteLine("Неверный ввод, продолжаем игру.")
 			End If
