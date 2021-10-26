@@ -24,6 +24,10 @@
     cd roulette
     dotnet build
 
+## Быстрый запуск с помошью Docker
+
+    docker run bushchikivan/roulette:master
+
 ## Перевод / translation
 
 Игра на данном этапе разработки только на русском языке, перевод на английский планируется.
