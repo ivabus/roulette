@@ -16,14 +16,14 @@
 
 Системные требования macOS или Linux, git или Docker, цветной терминал.
 
-### Docker с master веткой
-
-    docker run -it bushchikivan/roulette:master
-    
 ### Docker с последним релизом
 
     docker run -it bushchikivan/roulette:latest
 
+### Docker с master веткой
+
+    docker run -it bushchikivan/roulette:master
+    
 ### Без Docker
 
 Требуется dotnet-sdk >= 5.
