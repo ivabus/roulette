@@ -26,11 +26,11 @@
 
     dotnet run
 
-## Быстрый запуск версии из master ветки с помошью Docker (для x86_64)
+### Быстрый запуск версии из master ветки с помошью Docker (для x86_64)
 
     docker run -it bushchikivan/roulette:master
     
-## Быстрый запуск последней стабильной версии с помощью Docker (для x86_64)
+### Быстрый запуск последней стабильной версии с помощью Docker (для x86_64)
 
     docker run -it bushchikivan/roulette:latest
 
