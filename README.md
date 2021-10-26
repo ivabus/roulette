@@ -14,7 +14,7 @@
 
 В данный момент нет деления на стабильную и нестабильную версию.
 
-## Сборка
+## Сборка и сборка
 
 Требования macOS | Linux, git, цветной терминал.
 
@@ -23,6 +23,8 @@
     git clone https://github.com/BushchikIvan/roulette
     cd roulette
     dotnet build
+
+    dotnet run
 
 ## Быстрый запуск с помошью Docker
 
