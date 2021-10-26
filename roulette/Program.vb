@@ -3,19 +3,19 @@
 Module Program
 	'https://github.com/BushchikIvan/roulette
 	Dim ReadOnly _
-		ring(,) As Integer =
+		Ring(,) As Integer =
 			{{0, 32, 15, 19, 4, 21, 2, 25, 17, 34, 6, 27, 13, 36, 11, 30, 8, 23, 10, 5, 24, 16, 33, 1, 20, 14, 31, 9, 22, 18, 29,
 			  7, 28, 12, 35, 3, 26},
 			 {0, 1, 2, 1, 2, 1, 2, 1, 2, 1, 2, 1, 2, 1, 2, 1, 2, 1, 2, 1, 2, 1, 2, 1, 2, 1, 2, 1, 2, 1, 2, 1, 2, 1, 2, 1, 2}}
 
-	Dim ReadOnly colors() As ConsoleColor = {ConsoleColor.White, ConsoleColor.Red, ConsoleColor.Black}
+	Dim ReadOnly Colors() As ConsoleColor = {ConsoleColor.White, ConsoleColor.Red, ConsoleColor.Black}
 
 	Dim ReadOnly _
-		ringRank0() As Integer =
+		RingRank0() As Integer =
 			{0, 32, 15, 19, 4, 21, 2, 25, 17, 34, 6, 27, 13, 36, 11, 30, 8, 23, 10, 5, 24, 16, 33, 1, 20, 14, 31, 9, 22, 18, 29,
 			 7, 28, 12, 35, 3, 26}
 	'ringRank0 нужен, чтобы было удобно подавать массив в поиск индекса
-	Dim ReadOnly logo() As String = { _
+	Dim ReadOnly Logo() As String = { _
 		                                "####    ###   #   #  #      #####  #####  #####  #####",
 		                                "#   #  #   #  #   #  #      #        #      #    #     ",
 		                                "#   #  #   #  #   #  #      #        #      #    #     ",
@@ -33,11 +33,11 @@ Module Program
 		Return - 1
 	End Function
 
-	Sub displayHistory(history() As Integer)
+	Sub DisplayHistory(history() As Integer)
 		Console.ForegroundColor = ConsoleColor.DarkBlue
 		Console.Write("История выпадений (последние 15): ")
 		For i = If(Ubound(history) > 14, Ubound(history) - 14, 0) To UBound(history)
-			Console.ForegroundColor = colors(ring(1, getindex(ringRank0, history(i))))
+			Console.ForegroundColor = Colors(Ring(1, getindex(RingRank0, history(i))))
 			Console.Write(history(i) & " ")
 		Next
 		Console.ForegroundColor = ConsoleColor.DarkBlue
@@ -53,55 +53,55 @@ Module Program
 		Return outArr
 	End Function
 
-	Sub sleep(d As Single)
+	Sub Sleep(d As Single)
 		Dim t As Single = Timer
 		Do while Timer - t < d
 		Loop
 	End Sub
 
-	Sub intro()
+	Sub Intro()
 		Console.ForegroundColor = ConsoleColor.DarkBlue
-		Console.SetCursorPosition(Console.WindowWidth\2 - Len(logo(0))\2, Console.WindowHeight()\2 - UBound(logo) + 3)
-		For i = 0 To UBound(logo)
-			Console.WriteLine(logo(i))
-			Console.SetCursorPosition(Console.WindowWidth\2 - Len(logo(0))\2, Console.GetCursorPosition().Item2)
-			sleep(0.04444)
+		Console.SetCursorPosition(Console.WindowWidth\2 - Len(Logo(0))\2, Console.WindowHeight()\2 - UBound(Logo) + 3)
+		For i = 0 To UBound(Logo)
+			Console.WriteLine(Logo(i))
+			Console.SetCursorPosition(Console.WindowWidth\2 - Len(Logo(0))\2, Console.GetCursorPosition().Item2)
+			Sleep(0.04444)
 		Next
 		'sleep(5)
 		Console.SetCursorPosition(0, 0)
-		For i = 0 To (Console.WindowHeight()\2 - UBound(logo) + 2)\2
+		For i = 0 To (Console.WindowHeight()\2 - UBound(Logo) + 2)\2
 			Console.WriteLine(StrDup(Console.WindowWidth - 1, "#"))
-			sleep(0.04444)
+			Sleep(0.04444)
 		Next
-		For i = 0 To Console.WindowHeight - (Console.WindowHeight()\2 - UBound(logo) + 2) - 3
-			Console.Write(StrDup((Console.WindowWidth\2 - Len(logo(0))\2)\2, "#"))
-			Console.SetCursorPosition(Console.WindowWidth - (Console.WindowWidth\2 - Len(logo(0))\2)\2,
+		For i = 0 To Console.WindowHeight - (Console.WindowHeight()\2 - UBound(Logo) + 2) - 3
+			Console.Write(StrDup((Console.WindowWidth\2 - Len(Logo(0))\2)\2, "#"))
+			Console.SetCursorPosition(Console.WindowWidth - (Console.WindowWidth\2 - Len(Logo(0))\2)\2,
 			                          (Console.GetCursorPosition().Item2))
-			Console.WriteLine(StrDup((Console.WindowWidth\2 - Len(logo(0))\2)\2 - 1, "#"))
-			sleep(0.04444)
+			Console.WriteLine(StrDup((Console.WindowWidth\2 - Len(Logo(0))\2)\2 - 1, "#"))
+			Sleep(0.04444)
 		Next
-		For i = 0 To (Console.WindowHeight()\2 - UBound(logo) + 2)\2 - 1
+		For i = 0 To (Console.WindowHeight()\2 - UBound(Logo) + 2)\2 - 1
 			Console.WriteLine(StrDup(Console.WindowWidth - 1, "#"))
-			sleep(0.04444)
+			Sleep(0.04444)
 		Next
-		Dim entr = "   Нажмите любую кнопку, чтобы начать игру! "
+		Const entr As String = "   Нажмите любую кнопку, чтобы начать игру! "
 		Console.SetCursorPosition((Console.WindowWidth\2) - Len(entr)\2,
-		                          Console.WindowHeight - (Console.WindowHeight()\2 - UBound(logo) + 2)\4 - 3)
+		                          Console.WindowHeight - (Console.WindowHeight()\2 - UBound(Logo) + 2)\4 - 3)
 		Console.Write(StrDup(Len(entr) + 2, " "))
 
 		Console.SetCursorPosition((Console.WindowWidth\2) - Len(entr)\2,
-		                          Console.WindowHeight - (Console.WindowHeight()\2 - UBound(logo) + 2)\4 - 2)
+		                          Console.WindowHeight - (Console.WindowHeight()\2 - UBound(Logo) + 2)\4 - 2)
 		Console.Write(entr & "  ")
 
 		Console.SetCursorPosition((Console.WindowWidth\2) - Len(entr)\2,
-		                          Console.WindowHeight - (Console.WindowHeight()\2 - UBound(logo) + 2)\4 - 1)
+		                          Console.WindowHeight - (Console.WindowHeight()\2 - UBound(Logo) + 2)\4 - 1)
 		Console.Write(StrDup(Len(entr) + 2, " "))
 		Console.SetCursorPosition(0, 0)
 		Console.ReadKey
 		Console.Clear
 	End Sub
 
-	Function spinWheel() As String()
+	Function SpinWheel() As String()
 		Dim rnd As New Random
 		Dim probability(36) As Double
 		Dim whatDropped As New List(Of String)
@@ -124,71 +124,71 @@ Module Program
 			End If
 		Next
 
-		whatDropped.Add(ring(0, dropped).ToString())
+		whatDropped.Add(Ring(0, dropped).ToString())
 
 		If dropped = 0 Then return whatDropped.ToArray()
-		If ring(0, dropped) mod 2 = 0 And dropped > 0
+		If Ring(0, dropped) mod 2 = 0 And dropped > 0
 			whatDropped.Add("EVEN")
 		Else
 			whatDropped.Add("ODD")
 		End If
 
-		If ring(0, dropped) mod 3 = 0 And dropped > 0
+		If Ring(0, dropped) mod 3 = 0 And dropped > 0
 			whatDropped.Add("3L")
-		Else If ring(0, dropped) mod 3 = 1
+		Else If Ring(0, dropped) mod 3 = 1
 			whatDropped.Add("2L")
 		Else
 			whatDropped.Add("1L")
 		End If
 
-		If ring(1, dropped) = 1
+		If Ring(1, dropped) = 1
 			whatDropped.Add("RED")
-		Else If ring(1, dropped) = 2
+		Else If Ring(1, dropped) = 2
 			whatDropped.Add("BLACK")
 		End If
 
-		If ring(0, dropped) > 0 And ring(0, dropped) <= 12
+		If Ring(0, dropped) > 0 And Ring(0, dropped) <= 12
 			whatDropped.Add("F12")
-		Else If ring(0, dropped) > 12 And ring(0, dropped) <= 24
+		Else If Ring(0, dropped) > 12 And Ring(0, dropped) <= 24
 			whatDropped.Add("S12")
-		Else If ring(0, dropped) > 24
+		Else If Ring(0, dropped) > 24
 			whatDropped.Add("T12")
 		End If
 
-		If ring(0, dropped) > 0 And ring(0, dropped) < 19
+		If Ring(0, dropped) > 0 And Ring(0, dropped) < 19
 			whatDropped.Add("TO18")
-		ElseIf ring(0, dropped) > 18
+		ElseIf Ring(0, dropped) > 18
 			whatDropped.Add("FROM18")
 		End If
 
 		Return whatDropped.ToArray()
 	End Function
 
-	Sub display(dropped As Integer)
+	Sub Display(dropped As Integer)
 		Console.BackgroundColor = ConsoleColor.Green
 		Console.Clear()
 
-		If ring(0, 0) <> dropped
+		If Ring(0, 0) <> dropped
 			Console.BackgroundColor = ConsoleColor.Black
-			Console.ForegroundColor = colors(ring(1, 0))
-			Console.Write(ring(0, 0) & " ")
+			Console.ForegroundColor = Colors(Ring(1, 0))
+			Console.Write(Ring(0, 0) & " ")
 			Console.BackgroundColor = ConsoleColor.Green
 		Else
 			Console.BackgroundColor = ConsoleColor.White
 			Console.ForegroundColor = ConsoleColor.Black
-			Console.Write(ring(0, 0))
+			Console.Write(Ring(0, 0))
 			Console.BackgroundColor = ConsoleColor.Green
 			Console.Write(" ")
 		End If
 
 		For i = 1 To 36
-			If ring(0, i) <> dropped
-				Console.ForegroundColor = colors(ring(1, i))
-				Console.Write(ring(0, i) & " ")
+			If Ring(0, i) <> dropped
+				Console.ForegroundColor = Colors(Ring(1, i))
+				Console.Write(Ring(0, i) & " ")
 			Else
 				Console.BackgroundColor = ConsoleColor.White
-				Console.ForegroundColor = colors(ring(1, i))
-				Console.Write(ring(0, i))
+				Console.ForegroundColor = Colors(Ring(1, i))
+				Console.Write(Ring(0, i))
 				Console.BackgroundColor = ConsoleColor.Green
 				Console.Write(" ")
 			End If
@@ -199,13 +199,13 @@ Module Program
 		Console.WriteLine()
 
 		For i = 3 To 36 Step 3
-			temp = GetIndex(ringRank0, i)
+			temp = GetIndex(RingRank0, i)
 			If i <> dropped
-				Console.ForegroundColor = colors(ring(1, temp))
+				Console.ForegroundColor = Colors(Ring(1, temp))
 				Console.Write("{0,2:G} ", i)
 			Else
 				Console.BackgroundColor = ConsoleColor.White
-				Console.ForegroundColor = colors(ring(1, temp))
+				Console.ForegroundColor = Colors(Ring(1, temp))
 				Console.Write("{0,2:G}", i)
 				Console.BackgroundColor = ConsoleColor.Green
 				Console.Write(" ")
@@ -217,13 +217,13 @@ Module Program
 		Console.WriteLine()
 
 		For i = 2 To 36 Step 3
-			temp = GetIndex(ringRank0, i)
+			temp = GetIndex(RingRank0, i)
 			If i <> dropped
-				Console.ForegroundColor = colors(ring(1, temp))
+				Console.ForegroundColor = Colors(Ring(1, temp))
 				Console.Write("{0,2:G} ", i)
 			Else
 				Console.BackgroundColor = ConsoleColor.White
-				Console.ForegroundColor = colors(ring(1, temp))
+				Console.ForegroundColor = Colors(Ring(1, temp))
 				Console.Write("{0,2:G}", i)
 				Console.BackgroundColor = ConsoleColor.Green
 				Console.Write(" ")
@@ -235,13 +235,13 @@ Module Program
 		Console.WriteLine()
 
 		For i = 1 To 36 Step 3
-			temp = GetIndex(ringRank0, i)
+			temp = GetIndex(RingRank0, i)
 			If i <> dropped
-				Console.ForegroundColor = colors(ring(1, temp))
+				Console.ForegroundColor = Colors(Ring(1, temp))
 				Console.Write("{0,2:G} ", i)
 			Else
 				Console.BackgroundColor = ConsoleColor.White
-				Console.ForegroundColor = colors(ring(1, temp))
+				Console.ForegroundColor = Colors(Ring(1, temp))
 				Console.Write("{0,2:G}", i)
 				Console.BackgroundColor = ConsoleColor.Green
 				Console.Write(" ")
@@ -255,7 +255,7 @@ Module Program
 		Console.ForegroundColor = ConsoleColor.DarkBlue
 	End Sub
 
-	Sub rules()
+	Sub Rules()
 		Console.Clear
 		Console.ForegroundColor = ConsoleColor.DarkBlue
 		Console.WriteLine("Рекомендуемое разрешение консоли: 100x35")
@@ -282,7 +282,7 @@ Module Program
 		Console.ReadKey()
 	End Sub
 
-	Sub game()
+	Sub Game()
 		Console.WriteLine("Игра началась!")
 		Dim fish As Long = 5000
 		Dim history As New List(Of Integer)
@@ -301,13 +301,13 @@ Module Program
 				Console.WriteLine("Неверный ввод, продолжаем игру.")
 			End If
 
-			Dim generated() As String = spinWheel()
+			Dim generated() As String = SpinWheel()
 			Console.Clear
 			history.Add(generated(0))
 
 			Console.WriteLine("Делайте ставки:")
 			Console.Write(">>> ")
-			Dim stav As New List(Of String)
+			Dim stav
 			stav = UCase(Console.ReadLine()).Split.ToList()
 			Console.WriteLine("Укажите суммы ставок:")
 			Console.Write(">>> ")
@@ -334,8 +334,8 @@ Module Program
 				End If
 			Next
 			Console.WriteLine("Крутим колесо...")
-			sleep(1)
-			display(Int(generated(0)))
+			Sleep(1)
+			Display(Int(generated(0)))
 			Console.ForegroundColor = ConsoleColor.DarkBlue
 			Dim indedx As Integer
 			For i = 0 To UBound(generated)
@@ -371,7 +371,7 @@ Module Program
 				Console.Write(generated(i) & " ")
 			Next
 			Console.WriteLine()
-			displayHistory(history.ToArray())
+			DisplayHistory(history.ToArray())
 			Console.ForegroundColor = ConsoleColor.DarkBlue
 			Console.WriteLine()
 		Loop
@@ -385,7 +385,7 @@ Module Program
 		Console.ForegroundColor = ConsoleColor.DarkBlue
 		Randomize()
 		Console.Clear()
-		intro()
+		Intro()
 		Console.WriteLine("Игра Рулетка")
 		Console.WriteLine("1) Начать игру")
 		Console.WriteLine("2) Ознакомиться с правилами")
@@ -398,14 +398,14 @@ Module Program
 			Case 0
 				Console.WriteLine()
 				Console.WriteLine("Неправильный ввод!")
-				sleep(5)
+				Sleep(5)
 				Main()
 			Case 1
 				Console.Clear
-				game()
+				Game()
 				Main()
 			Case 2
-				rules()
+				Rules()
 				Main()
 			Case 3
 				Exit Sub
