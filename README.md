@@ -26,7 +26,7 @@
 
     dotnet run
 
-## Быстрый запуск с помошью Docker
+## Быстрый запуск с помошью Docker (для linux x86_64)
 
     docker run -it bushchikivan/roulette:master
 
