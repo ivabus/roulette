@@ -34,6 +34,11 @@
 
     docker run -it bushchikivan/roulette:latest
 
+## Скриншоты
+
+![Скриншот 1](/screenshots/1.png?raw=true "Скриншот 1")
+![Скриншот 2](/screenshots/2.png?raw=true "Скриншот 2")
+
 ## Перевод / translation
 
 Игра на данном этапе разработки только на русском языке, перевод на английский планируется.
