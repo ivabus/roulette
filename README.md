@@ -12,7 +12,7 @@
 
 Протестировано на macOS-arm (через Rosetta 2), macOS-x64, linux-x86_64, linux-arm, linux-docker-x86_64.
 
-## Сборка и запуск
+## Запуск
 
 Требования macOS или Linux, git или Docker, цветной терминал.
 
