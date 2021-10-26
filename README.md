@@ -1,6 +1,6 @@
 # Рулетка
 [![Build](https://github.com/BushchikIvan/roulette/actions/workflows/dotnet.yml/badge.svg)](https://github.com/BushchikIvan/roulette/actions/workflows/dotnet.yml)
-[![Docker Image CI](https://github.com/BushchikIvan/roulette/actions/workflows/docker-image.yml/badge.svg)](https://github.com/BushchikIvan/roulette/actions/workflows/docker-image.yml)
+
 
 ## Игра с открытым исходным кодом на VB.NET
 
