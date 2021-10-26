@@ -14,11 +14,11 @@
 
 ## Запуск
 
-Требования macOS или Linux, git или Docker, цветной терминал.
+Системные требования macOS или Linux, git или Docker, цветной терминал.
 
 ### Без Docker
 
-Рекомендуется dotnet-sdk >= 5.
+Требуется dotnet-sdk >= 5.
 
     git clone https://github.com/BushchikIvan/roulette
     cd roulette
