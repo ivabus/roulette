@@ -28,7 +28,7 @@
 
 ## Быстрый запуск с помошью Docker
 
-    docker run bushchikivan/roulette:master
+    docker run -it bushchikivan/roulette:master
 
 ## Перевод / translation
 
