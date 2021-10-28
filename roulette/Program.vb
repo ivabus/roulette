@@ -15,6 +15,8 @@ Module Program
 			{0, 32, 15, 19, 4, 21, 2, 25, 17, 34, 6, 27, 13, 36, 11, 30, 8, 23, 10, 5, 24, 16, 33, 1, 20, 14, 31, 9, 22, 18, 29,
 			 7, 28, 12, 35, 3, 26}
 	'ringRank0 нужен, чтобы было удобно подавать массив в поиск индекса
+	
+	Dim ReadOnly ReleaseTag As String = "1.26"
 	Dim ReadOnly Logo() As String = { _
 		                                "####    ###   #   #  #      #####  #####  #####  #####",
 		                                "#   #  #   #  #   #  #      #        #      #    #     ",
@@ -379,6 +381,18 @@ Module Program
 		Console.WriteLine("Нажмите любую кнопку, чтобы выйти в меню.")
 		Console.ReadKey()
 	End Sub
+	
+	Sub About()
+		Console.Clear()
+		Console.WriteLine("Рулетка / roulette")
+		Console.WriteLine("Автор: Иван Бущик <ivan@bushchik.ru>")
+		Console.WriteLine("Лицензия: MIT")
+		Console.WriteLine("Сайт: bushchikivan.github.io/roulette")
+		Console.WriteLine("Репозиторий: github.com/BushchikIvan/roulette")
+		Console.WriteLine("Версия: " + ReleaseTag)
+		Console.WriteLine("Нажмите любую кнопку чтобы продолжить.")
+		Console.ReadKey()
+	End Sub
 
 	Sub Main()
 		Console.BackgroundColor = ConsoleColor.Green
@@ -389,17 +403,13 @@ Module Program
 		Console.WriteLine("Игра Рулетка")
 		Console.WriteLine("1) Начать игру")
 		Console.WriteLine("2) Ознакомиться с правилами")
-		Console.WriteLine("3) Выйти из игры")
+		Console.WriteLine("3) О игре")
+		Console.WriteLine("0) Выйти из игры")
 		Console.Write(">>> ")
-		Dim input As Char = Console.ReadKey.KeyChar
-		Dim n As Integer =
-			    If(Int(input.ToString()) = 1 Or Int(input.ToString()) = 2 Or Int(input.ToString()) = 3, Int(input.ToString()), 0)
-		Select Case n
+		Dim input As Integer = Console.ReadLine
+		Select Case input
 			Case 0
-				Console.WriteLine()
-				Console.WriteLine("Неправильный ввод!")
-				Sleep(5)
-				Main()
+				Exit Sub
 			Case 1
 				Console.Clear
 				Game()
@@ -408,7 +418,8 @@ Module Program
 				Rules()
 				Main()
 			Case 3
-				Exit Sub
+				About()
+				Main()
 		End Select
 	End Sub
 End Module
