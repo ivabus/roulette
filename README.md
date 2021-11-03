@@ -10,23 +10,11 @@
 
 Игра представляет собой Европейскую рулетку в консоли.
 
-Протестировано на macOS-aarch64 (через Rosetta 2), macOS-x64, linux-x86_64, linux-aarch64, linux-docker-x86_64, macOS-docker-aarch64.
+Протестировано на macOS-aarch64 (через Rosetta 2), macOS-x64, linux-x86_64, linux-aarch64.
 
 ## Запуск
 
-Системные требования: macOS или Linux, git или Docker, цветной терминал.
-
-### Docker с последним релизом
-
-    docker run -it bushchikivan/roulette:latest
-
-### Docker с master веткой
-
-    docker run -it bushchikivan/roulette:master
-    
-### Без Docker
-
-Требуется dotnet-sdk >= 5.
+Системные требования: macOS или Linux, dotnet-sdk >= 5, git, цветной терминал.
 
     git clone https://github.com/BushchikIvan/roulette
     cd roulette
