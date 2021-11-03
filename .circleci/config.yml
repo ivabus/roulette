@@ -23,6 +23,7 @@ jobs:
           working_directory: ~/project/App.Tests
           name: Run tests
           command: |
+            cd roulette
             dotnet test
 
 # Invoke jobs via workflows
