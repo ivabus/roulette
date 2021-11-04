@@ -1,6 +1,4 @@
-# Рулетка
-[![Build](https://github.com/BushchikIvan/roulette/actions/workflows/dotnet.yml/badge.svg)](https://github.com/BushchikIvan/roulette/actions/workflows/dotnet.yml)
-
+# Рулетка [![Build](https://github.com/BushchikIvan/roulette/actions/workflows/dotnet.yml/badge.svg)](https://github.com/BushchikIvan/roulette/actions/workflows/dotnet.yml)
 
 ## Игра с открытым исходным кодом на VB.NET
 
@@ -23,7 +21,7 @@
 ### Docker с master веткой
 
     docker run -it bushchikivan/roulette:master
-    
+
 ### Без Docker
 
 Требуется dotnet-sdk >= 5.
@@ -42,4 +40,3 @@
 Игра на данном этапе разработки только на русском языке, перевод на английский планируется.
 
 The game is currently only in Russian, and an English translation is planned.
-
