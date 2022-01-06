@@ -395,6 +395,25 @@ Module Program
 		Console.ReadKey()
 	End Sub
 
+	Sub TestGenerator()
+		Randomize()
+		Dim Count, Ending As Integer
+		Dim rnd As New Random
+		Console.Write("Введите количество чисел для генерирования >>> ")
+		Count = Console.ReadLine()
+		Console.Write("Введите конец диапазона проверки (от 0 по X, где X - число, которое вводится сейчас) >>> ")
+		Ending = Console.ReadLine()
+		Dim mass(Count) As Integer
+		For i = 0 to Ubound(mass)
+			mass(i) = 0
+		Next
+		Dim now As Integer
+		For i = 0 To Count
+			mass(rnd.Next(0, Ending)) += 1
+		Next
+		
+	End Sub
+
 	Sub Main()
 		Console.BackgroundColor = ConsoleColor.Green
 		Console.ForegroundColor = ConsoleColor.DarkBlue
@@ -405,6 +424,8 @@ Module Program
 		Console.WriteLine("1) Начать игру")
 		Console.WriteLine("2) Ознакомиться с правилами")
 		Console.WriteLine("3) О игре")
+		Console.WriteLine("Дополнительно:")
+		Console.WriteLine("4) Проверка генератора случайных чисел")
 		Console.WriteLine("0) Выйти из игры")
 		Console.Write(">>> ")
 		Dim input As Integer = Console.ReadLine
@@ -421,6 +442,8 @@ Module Program
 			Case 3
 				About()
 				Main()
+			Case 4
+				TestGenerator()
 		End Select
 	End Sub
 End Module
