@@ -1,19 +1,20 @@
 
 
 Module Program
-	'https://github.com/BushchikIvan/roulette
+	'https://github.com/ivabus/roulette
+	'https://ivabus.github.io/roulette
 	Dim ReadOnly _
 		Ring(,) As Integer =
 			{{0, 32, 15, 19, 4, 21, 2, 25, 17, 34, 6, 27, 13, 36, 11, 30, 8, 23, 10, 5, 24, 16, 33, 1, 20, 14, 31, 9, 22, 18, 29,
 			  7, 28, 12, 35, 3, 26},
 			 {0, 1, 2, 1, 2, 1, 2, 1, 2, 1, 2, 1, 2, 1, 2, 1, 2, 1, 2, 1, 2, 1, 2, 1, 2, 1, 2, 1, 2, 1, 2, 1, 2, 1, 2, 1, 2}}
+	'Второе измерение массива Ring необходимо для распределения цвета с помощью массива Colors по номерам 0 - белый, 1 - красный, 2 - чёрный
 
 	Dim ReadOnly Colors() As ConsoleColor = {ConsoleColor.White, ConsoleColor.Red, ConsoleColor.Black}
 
 	Dim ReadOnly _
-		RingRank0() As Integer =
-			{0, 32, 15, 19, 4, 21, 2, 25, 17, 34, 6, 27, 13, 36, 11, 30, 8, 23, 10, 5, 24, 16, 33, 1, 20, 14, 31, 9, 22, 18, 29,
-			 7, 28, 12, 35, 3, 26}
+		RingRank0() As Integer = {0, 32, 15, 19, 4, 21, 2, 25, 17, 34, 6, 27, 13, 36, 11, 30, 8, 23, 10, 5, 24, 16, 33, 1, 20, 14, 31, 9, 22, 18, 29,
+			  7, 28, 12, 35, 3, 26}
 	'ringRank0 нужен, чтобы было удобно подавать массив в поиск индекса
 	
 	Dim ReadOnly ReleaseTag As String = "1.26"
@@ -35,7 +36,7 @@ Module Program
 		Return - 1
 	End Function
 
-	Sub DisplayHistory(history() As Integer)
+	Sub DisplayHistory(history() As Integer)		'Эта функция не реализована в Game(), потому что это захламляло бы код
 		Console.ForegroundColor = ConsoleColor.DarkBlue
 		Console.Write("История выпадений (последние 15): ")
 		For i = If(Ubound(history) > 14, Ubound(history) - 14, 0) To UBound(history)
@@ -45,7 +46,7 @@ Module Program
 		Console.ForegroundColor = ConsoleColor.DarkBlue
 	End Sub
 
-	Function RemoveAt (Of T)(arr As T(), index As Integer) As T()
+	Function RemoveAt (Of T)(arr As T(), index As Integer) As T()	'Скопировано с StackOverflow
 		Dim uBound = arr.GetUpperBound(0)
 		Dim lBound = arr.GetLowerBound(0)
 		Dim arrLen = uBound - lBound
@@ -55,7 +56,7 @@ Module Program
 		Return outArr
 	End Function
 
-	Sub Sleep(d As Single)
+	Sub Sleep(d As Single)		'Название говорит о предназначении функции
 		Dim t As Single = Timer
 		Do while Timer - t < d
 		Loop
