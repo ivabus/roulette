@@ -16,7 +16,7 @@ Module Program
 			  7, 28, 12, 35, 3, 26}
 	'ringRank0 нужен, чтобы было удобно подавать массив в поиск индекса
 
-	Private Const ReleaseTag As String = "2"
+	Private Const ReleaseTag As String = "2.0"
 
 	Dim ReadOnly Logo() As String = { _
 		                                "####    ###   #   #  #      #####  #####  #####  #####",
