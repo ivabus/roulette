@@ -8,15 +8,16 @@
 
 Игра представляет собой Европейскую рулетку в консоли.
 
-Протестировано на macOS-aarch64 (через Rosetta 2), macOS-x64, linux-x86_64, linux-aarch64.
+Протестировано на macOS-aarch64 (через Rosetta 2), macOS-x64, linux-x64.
 
 ## Запуск
 
-Системные требования: macOS или Linux, dotnet-sdk >= 5, git, цветной терминал.
+Системные требования: Windows 10-11, macOS или Linux.
 
-    git clone https://github.com/BushchikIvan/roulette
-    cd roulette
-    dotnet run
+1. Скачать нужный файл со страницы Releases
+2. Запустить
+3. Проверить размер окна (рекомендуется 100х40 символов)
+4. Profit
 
 ## Скриншоты
 
