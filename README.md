@@ -20,8 +20,8 @@
 
 ## Скриншоты
 
-![Скриншот 1](screenshots/1.png)
-![Скриншот 2](screenshots/2.png)
+<img alt="Скриншот 1" src="screenshots/1.png" width="200"/>
+<img alt="Скриншот 2" src="screenshots/2.png" width="200"/>
 
 ## Перевод / translation
 
