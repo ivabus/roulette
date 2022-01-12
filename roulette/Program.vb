@@ -1,5 +1,4 @@
 
-
 Module Program
 	'https://github.com/ivabus/roulette
 	'https://ivabus.github.io/roulette
@@ -16,8 +15,9 @@ Module Program
 		RingRank0() As Integer = {0, 32, 15, 19, 4, 21, 2, 25, 17, 34, 6, 27, 13, 36, 11, 30, 8, 23, 10, 5, 24, 16, 33, 1, 20, 14, 31, 9, 22, 18, 29,
 			  7, 28, 12, 35, 3, 26}
 	'ringRank0 нужен, чтобы было удобно подавать массив в поиск индекса
-	
-	Dim ReadOnly ReleaseTag As String = "1.26"
+
+	Private Const ReleaseTag As String = "2"
+
 	Dim ReadOnly Logo() As String = { _
 		                                "####    ###   #   #  #      #####  #####  #####  #####",
 		                                "#   #  #   #  #   #  #      #        #      #    #     ",
@@ -45,17 +45,7 @@ Module Program
 		Next
 		Console.ForegroundColor = ConsoleColor.DarkBlue
 	End Sub
-
-	Function RemoveAt (Of T)(arr As T(), index As Integer) As T()	'Скопировано с StackOverflow
-		Dim uBound = arr.GetUpperBound(0)
-		Dim lBound = arr.GetLowerBound(0)
-		Dim arrLen = uBound - lBound
-		Dim outArr(arrLen - 1) As T
-		Array.Copy(arr, 0, outArr, 0, index)
-		Array.Copy(arr, index + 1, outArr, index, uBound - index)
-		Return outArr
-	End Function
-
+	
 	Sub Sleep(d As Single)		'Название говорит о предназначении функции
 		Dim t As Single = Timer
 		Do while Timer - t < d
@@ -87,7 +77,7 @@ Module Program
 			Console.WriteLine(StrDup(Console.WindowWidth - 1, "#"))
 			Sleep(0.04444)
 		Next
-		Const entr As String = "   Нажмите любую кнопку, чтобы начать игру! "
+		Const entr = "   Нажмите любую кнопку, чтобы начать игру! "
 		Console.SetCursorPosition((Console.WindowWidth\2) - Len(entr)\2,
 		                          Console.WindowHeight - (Console.WindowHeight()\2 - UBound(Logo) + 2)\4 - 3)
 		Console.Write(StrDup(Len(entr) + 2, " "))
@@ -286,24 +276,31 @@ Module Program
 	End Sub
 
 	Sub Game()
+		Console.WriteLine("Выберите сложность: ")
+		Console.WriteLine("1) Лёгкая - 500 фишек в начале")
+		Console.WriteLine("2) Нормальная - 100 фишек в начале")
+		Console.WriteLine("3) Сложная - 10 фишек в начале")
+		Console.WriteLine("4) Невозможная - 2 фишки в начале")
+		Console.Write(">>> ")
+		Dim choose As Integer = Console.ReadLine()
+		Dim fish As Long
+		Select Case choose
+			Case 1
+				fish = 500
+			Case 2
+				fish = 100
+			Case 3
+				fish = 10
+			Case 4
+				fish = 2
+			Case Else
+				Console.WriteLine("Выбор некорректен!")
+		End Select
 		Console.WriteLine("Игра началась!")
-		Dim fish As Long = 5000
 		Dim history As New List(Of Integer)
 
 		Do while fish > 0
 			Console.ForegroundColor = ConsoleColor.DarkBlue
-			Console.WriteLine("У Вас {0} фишек.", fish)
-			Console.WriteLine("Продолжить игру? (Y/n):")
-			Console.Write(">>> ")
-			Dim temp As String = Console.ReadLine()
-			If temp = "n" or temp = "N" Then
-				Exit Sub
-			Else IF temp = "" or temp = "y" or temp = "Y"
-				Console.Write("")
-			Else
-				Console.WriteLine("Неверный ввод, продолжаем игру.")
-			End If
-
 			Dim generated() As String = SpinWheel()
 			Console.Clear
 			history.Add(generated(0))
@@ -377,9 +374,20 @@ Module Program
 			DisplayHistory(history.ToArray())
 			Console.ForegroundColor = ConsoleColor.DarkBlue
 			Console.WriteLine()
+			Console.WriteLine("У Вас {0} фишек.", fish)
+			Console.WriteLine("Продолжить игру? (Y/n):")
+			Console.Write(">>> ")
+			Dim temp As String = Console.ReadLine()
+			If temp = "n" or temp = "N" Then
+				Exit Sub
+			Else IF temp = "" or temp = "y" or temp = "Y"
+				Console.Write("")
+			Else
+				Console.WriteLine("Неверный ввод, продолжаем игру.")
+			End If
 		Loop
-		Console.WriteLine("У Вас кончились фишки, игра окончена.")
-		Console.WriteLine("Нажмите любую кнопку, чтобы выйти в меню.")
+		Console.WriteLine("У Вас закончились фишки, игра окончена.")
+		Console.WriteLine("Нажмите любую клавишу, чтобы выйти в меню.")
 		Console.ReadKey()
 	End Sub
 	
@@ -391,59 +399,63 @@ Module Program
 		Console.WriteLine("Сайт: bushchikivan.github.io/roulette")
 		Console.WriteLine("Репозиторий: github.com/BushchikIvan/roulette")
 		Console.WriteLine("Версия: " + ReleaseTag)
-		Console.WriteLine("Нажмите любую кнопку чтобы продолжить.")
+		Console.WriteLine("Нажмите любую клавишу чтобы продолжить.")
 		Console.ReadKey()
 	End Sub
 
 	Sub TestGenerator()
 		Randomize()
-		Dim Count, Ending As Integer
+		Dim count As Integer
 		Dim rnd As New Random
 		Console.Write("Введите количество чисел для генерирования >>> ")
 		Count = Console.ReadLine()
-		Console.Write("Введите конец диапазона проверки (от 0 по X, где X - число, которое вводится сейчас) >>> ")
-		Ending = Console.ReadLine()
-		Dim mass(Count) As Integer
+		Dim mass(count) As Double
 		For i = 0 to Ubound(mass)
-			mass(i) = 0
+			mass(i) = rnd.NextDouble()
 		Next
-		Dim now As Integer
-		For i = 0 To Count
-			mass(rnd.Next(0, Ending)) += 1
-		Next
-		
+		Dim pogr As Double = 0
+		Dim sr As Double = mass.Sum() / Count
+		pogr = Math.abs((sr - 0.5) / 0.5) * 100
+		Console.WriteLine("Погрешность генератора случайных чисел " + pogr.ToString("0.#####") + "%")
 	End Sub
 
 	Sub Main()
-		Console.BackgroundColor = ConsoleColor.Green
-		Console.ForegroundColor = ConsoleColor.DarkBlue
-		Randomize()
-		Console.Clear()
-		Intro()
-		Console.WriteLine("Игра Рулетка")
-		Console.WriteLine("1) Начать игру")
-		Console.WriteLine("2) Ознакомиться с правилами")
-		Console.WriteLine("3) О игре")
-		Console.WriteLine("Дополнительно:")
-		Console.WriteLine("4) Проверка генератора случайных чисел")
-		Console.WriteLine("0) Выйти из игры")
-		Console.Write(">>> ")
-		Dim input As Integer = Console.ReadLine
-		Select Case input
-			Case 0
-				Exit Sub
-			Case 1
-				Console.Clear
-				Game()
-				Main()
-			Case 2
-				Rules()
-				Main()
-			Case 3
-				About()
-				Main()
-			Case 4
-				TestGenerator()
-		End Select
+		Try
+			Console.BackgroundColor = ConsoleColor.Green
+			Console.ForegroundColor = ConsoleColor.DarkBlue
+			Randomize()
+			Console.Clear()
+			Intro()
+			Console.WriteLine("Игра Рулетка")
+			Console.WriteLine("1) Начать игру")
+			Console.WriteLine("2) Ознакомиться с правилами")
+			Console.WriteLine("3) О игре")
+			Console.WriteLine("Дополнительно:")
+			Console.WriteLine("4) Проверка генератора случайных чисел")
+			Console.WriteLine("0) Выйти из игры")
+			Console.Write(">>> ")
+			Dim input As Integer = Console.ReadLine
+			Select Case input
+				Case 0
+					Exit Sub
+				Case 1
+					Console.Clear
+						Game()
+					Main()
+				Case 2
+					Rules()
+					Main()
+				Case 3
+					About()
+					Main()
+				Case 4
+					TestGenerator()
+				Case Else
+					Exit Sub
+			End Select
+		Catch
+			Console.WriteLine("Ошибка!")
+			Exit Sub
+		End Try
 	End Sub
 End Module
