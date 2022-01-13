@@ -1,31 +1,29 @@
-# Рулетка 
+# Рулетка / Roulette
 
-## Игра с открытым исходным кодом на VB.NET
+## Игра с открытым исходным кодом на VB.NET / Open source game on VB.net
 
-Создатель и сопроводитель: Иван Бущик <ivan@bushchik.ru>
+Создатель и сопроводитель: Иван Бущик <ivan@bushchik.ru> / Creator and maintainer: Ivan Bushchik <ivan@bushchik.ru>
 
-Лицензия: MIT
+Лицензия: MIT / License: MIT
 
-Игра представляет собой Европейскую рулетку в консоли.
+Игра представляет собой Европейскую рулетку в консоли. / Game is european roulette in terminal.
 
-Протестировано на macOS-aarch64 (через Rosetta 2), macOS-x64, linux-x64.
+Протестировано на macOS-arm64 (через Rosetta 2), macOS-x64, linux-x64. / Tested on macOS-arm64(via Rosetta 2), macOS-x64, linux-x64
 
 ## Запуск
 
-Системные требования: macOS или Linux.
+Системные требования: macOS или Linux, поддержка UTF-8 в системе. / System requirements: macOS or Linux with UTF-8 support in system.
 
-1. Скачать нужный файл со страницы Releases
-2. Запустить
-3. Проверить размер окна (рекомендуется 100х40 символов)
+1. Скачать нужный файл со страницы Releases / Download executable from "Releases" page
+2. Запустить / Run
+3. Проверить размер окна (рекомендуется 100х40 символов) / Check window size (recommended is 100x40)
 4. Profit
 
-## Скриншоты
+## Скриншоты / Screenshots
 
 <img alt="Скриншот 1" src="screenshots/1.png" width="200"/>
 <img alt="Скриншот 2" src="screenshots/2.png" width="200"/>
 
 ## Перевод / translation
 
-Игра на данном этапе разработки только на русском языке, перевод на английский планируется.
-
-The game is currently only in Russian, and an English translation is planned.
+English localisation done
