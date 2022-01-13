@@ -29,10 +29,20 @@ Module Program
 	                           "У Вас закончились фишки, игра окончена.", "Нажмите любую клавишу, чтобы выйти в меню.",
 	                           "Рулетка / roulette", "Автор: Иван Бущик <ivan@bushchik.ru>", "Лицензия: MIT", "Сайт: ivabus.dev/roulette",
 	                           "Репозиторий: github.com/ivabus/roulette", "Версия: ", "Введите количество чисел для генерирования >>> ",
-	                           "Погрешность генератора случайных чисел ", "Игра Рулетка", "1) Начать игру",
+	                           "Погрешность генератора случайных чисел: ", "Игра Рулетка", "1) Начать игру",
 	                           "2) Ознакомиться с правилами", "3) О игре", "Дополнительно:", "4) Проверка генератора случайных чисел",
 	                           "0) Выйти из игры", "Ошибка!"},
-	                          {"", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", ""}}
+	                          {"Drop history (last 15): ", "    Press any button to start ", "Choose difficulty: ", "1) Easy - 500 chips on the start",
+	                           "2) Normal - 100 chips on the start", "3) Hard - 10 chips on the start",
+	                           "4) Impossible - 2 chips on the start", "Incorrect choise!", "Game started",
+	                           "Place your bets: ", "Specify the bid amounts: ", "The bids are incorrect. Skipping.",
+	                           "Spinning wheel...", "Dropped: ", "You have {0} chips.", "Continue? (Y/n) >>> ",
+	                           "Incorrect input, we continue the game.", "You have run out of chips, the game is over.",
+	                           "Press any key to exit the menu.", "Roulette", "Author: Ivan Bushchik <ivan@bushchik.ru>",
+	                           "License: MIT", "Website: ivabus.dev/roulette", "Repository: github.com/ivabus/roulette",
+	                           "Version: ", "Enter the number of numbers to generate >>> ",
+	                           "Error of the random number generator: ", "Roulette game", "1) Begin game",
+	                           "2) Check the rules", "3) About game", "Additional: ", "4) Checking the random number generator", "0) Exit", "Error!"}}
 	Dim ReadOnly Logo() As String = { _
 		                                "####    ###   #   #  #      #####  #####  #####  #####",
 		                                "#   #  #   #  #   #  #      #        #      #    #     ",
@@ -384,8 +394,7 @@ Module Program
 			Console.ForegroundColor = ConsoleColor.DarkBlue
 			Console.WriteLine()
 			Console.WriteLine(strings(LANG, 14), fish)
-			Console.WriteLine(strings(LANG, 15))
-			Console.Write(">>> ")
+			Console.Write(strings(LANG, 15))
 			Dim temp As String = Console.ReadLine()
 			If temp = "n" or temp = "N" Then
 				Exit Sub
