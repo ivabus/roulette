@@ -1,4 +1,6 @@
 
+Imports System.Diagnostics.SymbolStore
+
 Module Program
 	'https://github.com/ivabus/roulette
 	'https://ivabus.github.io/roulette
