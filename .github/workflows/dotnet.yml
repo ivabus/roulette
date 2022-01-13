@@ -18,13 +18,11 @@ jobs:
     - name: Test
       run: dotnet test --no-build --verbosity normal
     - name: Publish on osx-x64
-      run: dotnet publish --runtime osx-x64 -o publish/osx-x64/
+      run: dotnet publish --runtime osx-x64 -o publish/osx-x64/ --self-contained
     - name: Publish on linux-x64
-      run: dotnet publish --runtime linux-x64 -o publish/linux-x64/
-    - name: Publish on linux-musl-x64
-      run: dotnet publish --runtime -o publish/linux-musl-x64/
+      run: dotnet publish --runtime linux-x64 -o publish/linux-x64/ --self-contained
     - name: Publish on linux-arm64
-      run: dotnet publish --runtime -o publish/linux-arm64/
+      run: dotnet publish --runtime -o publish/linux-arm64/ --self-contained 
     - name: Compress to zip file
       run: tar cf roulette.tar.gz publish/
 
