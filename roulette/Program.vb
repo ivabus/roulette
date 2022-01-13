@@ -16,8 +16,21 @@ Module Program
 			  7, 28, 12, 35, 3, 26}
 	'ringRank0 нужен, чтобы было удобно подавать массив в поиск индекса
 
-	Private Const ReleaseTag As String = "2.0"
-
+	Private Const ReleaseTag As String = "2.1"
+	
+	Dim LANG As Integer = -1
+	Dim ReadOnly strings(,)= {{"История выпадений (последние 15): ", "   Нажмите любую кнопку, чтобы начать игру! ",
+	                           "Выберите сложность: ", "1) Лёгкая - 500 фишек в начале", "2) Нормальная - 100 фишек в начале",
+	                           "3) Сложная - 10 фишек в начале", "4) Невозможная - 2 фишки в начале",
+	                           "Выбор некорректен!", "Игра началась!", "Делайте ставки:", "Укажите суммы ставок:", "Ставки не корректны. Пропуск.",
+	                           "Крутим колесо...", "Выпало: ", "У Вас {0} фишек.", "Продолжить игру? (Y/n):", "Неверный ввод, продолжаем игру.",
+	                           "У Вас закончились фишки, игра окончена.", "Нажмите любую клавишу, чтобы выйти в меню.",
+	                           "Рулетка / roulette", "Автор: Иван Бущик <ivan@bushchik.ru>", "Лицензия: MIT", "Сайт: ivabus.dev/roulette",
+	                           "Репозиторий: github.com/ivabus/roulette", "Версия: ", "Введите количество чисел для генерирования >>> ",
+	                           "Погрешность генератора случайных чисел ", "Игра Рулетка", "1) Начать игру",
+	                           "2) Ознакомиться с правилами", "3) О игре", "Дополнительно:", "4) Проверка генератора случайных чисел",
+	                           "0) Выйти из игры", "Ошибка!"},
+	                          {"", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", ""}}
 	Dim ReadOnly Logo() As String = { _
 		                                "####    ###   #   #  #      #####  #####  #####  #####",
 		                                "#   #  #   #  #   #  #      #        #      #    #     ",
@@ -38,7 +51,7 @@ Module Program
 
 	Sub DisplayHistory(history() As Integer)		'Эта функция не реализована в Game(), потому что это захламляло бы код
 		Console.ForegroundColor = ConsoleColor.DarkBlue
-		Console.Write("История выпадений (последние 15): ")
+		Console.Write(strings(LANG,0))
 		For i = If(Ubound(history) > 14, Ubound(history) - 14, 0) To UBound(history)
 			Console.ForegroundColor = Colors(Ring(1, getindex(RingRank0, history(i))))
 			Console.Write(history(i) & " ")
@@ -77,7 +90,7 @@ Module Program
 			Console.WriteLine(StrDup(Console.WindowWidth - 1, "#"))
 			Sleep(0.04444)
 		Next
-		Const entr = "   Нажмите любую кнопку, чтобы начать игру! "
+		Dim entr = strings(LANG,1)
 		Console.SetCursorPosition((Console.WindowWidth\2) - Len(entr)\2,
 		                          Console.WindowHeight - (Console.WindowHeight()\2 - UBound(Logo) + 2)\4 - 3)
 		Console.Write(StrDup(Len(entr) + 2, " "))
@@ -276,11 +289,11 @@ Module Program
 	End Sub
 
 	Sub Game()
-		Console.WriteLine("Выберите сложность: ")
-		Console.WriteLine("1) Лёгкая - 500 фишек в начале")
-		Console.WriteLine("2) Нормальная - 100 фишек в начале")
-		Console.WriteLine("3) Сложная - 10 фишек в начале")
-		Console.WriteLine("4) Невозможная - 2 фишки в начале")
+		Console.WriteLine(strings(LANG, 2))
+		Console.WriteLine(strings(LANG, 3))
+		Console.WriteLine(strings(LANG, 4))
+		Console.WriteLine(strings(LANG, 5))
+		Console.WriteLine(strings(LANG, 6))
 		Console.Write(">>> ")
 		Dim choose As Integer = Console.ReadLine()
 		Dim fish As Long
@@ -294,9 +307,9 @@ Module Program
 			Case 4
 				fish = 2
 			Case Else
-				Console.WriteLine("Выбор некорректен!")
+				Console.WriteLine(strings(LANG, 7))
 		End Select
-		Console.WriteLine("Игра началась!")
+		Console.WriteLine(strings(LANG,8))
 		Dim history As New List(Of Integer)
 
 		Do while fish > 0
@@ -305,17 +318,17 @@ Module Program
 			Console.Clear
 			history.Add(generated(0))
 
-			Console.WriteLine("Делайте ставки:")
+			Console.WriteLine(strings(LANG,9))
 			Console.Write(">>> ")
 			Dim stav
 			stav = UCase(Console.ReadLine()).Split.ToList()
-			Console.WriteLine("Укажите суммы ставок:")
+			Console.WriteLine(strings(LANG,10))
 			Console.Write(">>> ")
 			Dim summ() As String
 			summ = Console.ReadLine().Split
 			For i = 0 To UBound(summ)
 				If not IsNumeric(summ(i)) Then
-					Console.WriteLine("Ставки не корректны. Пропуск.")
+					Console.WriteLine(strings(LANG,11))
 					Continue Do
 				End If
 			Next
@@ -324,17 +337,17 @@ Module Program
 				summs.add(Int(summ(i)))
 			Next
 			If stav.Count <> summs.Count Or summs.ToArray.Sum() > fish Then
-				Console.WriteLine("Ставки не корректны. Пропуск.")
+				Console.WriteLine(strings(LANG, 11))
 				Continue Do
 			End If
 			For i = 0 To summs.Count - 1
 				If summs(i) < 0 Then
-					Console.WriteLine("Ставки не корректны. Пропуск.")
+					Console.WriteLine(strings(LANG, 11))
 					Continue Do
 				End If
 			Next
-			Console.WriteLine("Крутим колесо...")
-			Sleep(1)
+			Console.WriteLine(strings(LANG, 12))
+			Sleep(0.5)
 			Display(Int(generated(0)))
 			Console.ForegroundColor = ConsoleColor.DarkBlue
 			Dim indedx As Integer
@@ -343,20 +356,14 @@ Module Program
 					indedx = stav.IndexOf(generated(i))
 					If IsNumeric(generated(i))
 						fish += summ(indedx)*35
-						'stav.RemoveAt(indedx)
-						'summs.RemoveAt(indedx)
 					Else If _
 						generated(i) = "RED" Or generated(i) = "BLACK" Or generated(i) = "ODD" Or generated(i) = "EVEN" Or
 						generated(i) = "FROM18" Or generated(i) = "TO18" Then
 						fish += summ(indedx)*1
-						'stav.RemoveAt(indedx)
-						'summs.RemoveAt(indedx)
 					Else If _
 						generated(i) = "3L" Or generated(i) = "2L" Or generated(i) = "1L" Or generated(i) = "F12" Or generated(i) = "S12" Or
 						generated(i) = "T12" Then
 						fish += summ(indedx)*2
-						'stav.RemoveAt(indedx)
-						'summs.RemoveAt(indedx)
 					End If
 					stav.RemoveAt(indedx)
 					summs.RemoveAt(indedx)
@@ -366,7 +373,7 @@ Module Program
 				fish -= summs(i)
 			Next
 			Console.WriteLine()
-			Console.Write("Выпало: ")
+			Console.Write(strings(LANG,13))
 			For i = 0 To UBound(generated)
 				Console.Write(generated(i) & " ")
 			Next
@@ -374,8 +381,8 @@ Module Program
 			DisplayHistory(history.ToArray())
 			Console.ForegroundColor = ConsoleColor.DarkBlue
 			Console.WriteLine()
-			Console.WriteLine("У Вас {0} фишек.", fish)
-			Console.WriteLine("Продолжить игру? (Y/n):")
+			Console.WriteLine(strings(LANG, 14), fish)
+			Console.WriteLine(strings(LANG, 15))
 			Console.Write(">>> ")
 			Dim temp As String = Console.ReadLine()
 			If temp = "n" or temp = "N" Then
@@ -383,31 +390,31 @@ Module Program
 			Else IF temp = "" or temp = "y" or temp = "Y"
 				Console.Write("")
 			Else
-				Console.WriteLine("Неверный ввод, продолжаем игру.")
+				Console.WriteLine(strings(LANG, 16))
 			End If
 		Loop
-		Console.WriteLine("У Вас закончились фишки, игра окончена.")
-		Console.WriteLine("Нажмите любую клавишу, чтобы выйти в меню.")
+		Console.WriteLine(strings(LANG, 17))
+		Console.WriteLine(strings(LANG, 18))
 		Console.ReadKey()
 	End Sub
 	
 	Sub About()
 		Console.Clear()
-		Console.WriteLine("Рулетка / roulette")
-		Console.WriteLine("Автор: Иван Бущик <ivan@bushchik.ru>")
-		Console.WriteLine("Лицензия: MIT")
-		Console.WriteLine("Сайт: bushchikivan.github.io/roulette")
-		Console.WriteLine("Репозиторий: github.com/BushchikIvan/roulette")
-		Console.WriteLine("Версия: " + ReleaseTag)
-		Console.WriteLine("Нажмите любую клавишу чтобы продолжить.")
+		Console.WriteLine(strings(LANG, 19))
+		Console.WriteLine(strings(LANG, 20))
+		Console.WriteLine(strings(LANG, 21))
+		Console.WriteLine(strings(LANG, 22))
+		Console.WriteLine(strings(LANG, 23))
+		Console.WriteLine(strings(LANG, 24) + ReleaseTag)
+		Console.WriteLine(strings(LANG, 18))
 		Console.ReadKey()
 	End Sub
 
 	Sub TestGenerator()
 		Randomize()
-		Dim count As Integer
+		Dim count As Long
 		Dim rnd As New Random
-		Console.Write("Введите количество чисел для генерирования >>> ")
+		Console.Write(strings(LANG, 25))
 		Count = Console.ReadLine()
 		Dim mass(count) As Double
 		For i = 0 to Ubound(mass)
@@ -416,7 +423,7 @@ Module Program
 		Dim pogr As Double = 0
 		Dim sr As Double = mass.Sum() / Count
 		pogr = Math.abs((sr - 0.5) / 0.5) * 100
-		Console.WriteLine("Погрешность генератора случайных чисел " + pogr.ToString("0.#####") + "%")
+		Console.WriteLine(strings(LANG,26) + pogr.ToString("0.#####") + "%")
 	End Sub
 
 	Sub Main()
@@ -425,14 +432,27 @@ Module Program
 			Console.ForegroundColor = ConsoleColor.DarkBlue
 			Randomize()
 			Console.Clear()
+			If LANG = -1 Then
+				Console.WriteLine("Choose language / Выберете язык:")
+				Console.WriteLine("1) Russian / Русский")
+				Console.WriteLine("2) English / Английский")
+				Console.Write(">>> ")
+				LANG = Console.ReadLine() - 1
+				if LANG < 0 or LANG > 1 Then
+					Console.WriteLine("Incorrect choose")
+					Exit Sub
+				End If
+				Console.Clear()
+			End If
+			
 			Intro()
-			Console.WriteLine("Игра Рулетка")
-			Console.WriteLine("1) Начать игру")
-			Console.WriteLine("2) Ознакомиться с правилами")
-			Console.WriteLine("3) О игре")
-			Console.WriteLine("Дополнительно:")
-			Console.WriteLine("4) Проверка генератора случайных чисел")
-			Console.WriteLine("0) Выйти из игры")
+			Console.WriteLine(strings(LANG, 27))
+			Console.WriteLine(strings(LANG, 28))
+			Console.WriteLine(strings(LANG, 29))
+			Console.WriteLine(strings(LANG, 30))
+			Console.WriteLine(strings(LANG, 31))
+			Console.WriteLine(strings(LANG, 32))
+			Console.WriteLine(strings(LANG, 33))
 			Console.Write(">>> ")
 			Dim input As Integer = Console.ReadLine
 			Select Case input
@@ -454,7 +474,7 @@ Module Program
 					Exit Sub
 			End Select
 		Catch
-			Console.WriteLine("Ошибка!")
+			Console.WriteLine(strings(LANG, 34))
 			Exit Sub
 		End Try
 	End Sub
