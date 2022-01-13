@@ -1,11 +1,5 @@
 name: .NET
-
-on:
-  push:
-    branches: [ master ]
-  pull_request:
-    branches: [ master ]
-
+on: workflow_dispatch
 jobs:
   build:
 
@@ -23,3 +17,35 @@ jobs:
       run: dotnet build --no-restore
     - name: Test
       run: dotnet test --no-build --verbosity normal
+    - name: Prepare for publishing
+    - name: Publish on osx-x64
+      run: dotnet publish --runtime osx-x64 -o publish/osx-x64/
+    - name: Publish on linux-x64
+      run: dotnet publish --runtime linux-x64 -o publish/linux-x64/
+    - name: Publish on linux-musl-x64
+      run: dotnet publish --runtime -o publish/linux-musl-x64/
+    - name: Publish on linux-arm64
+      run: dotnet publish --runtime -o publish/linux-arm64/
+    - name: Compress to zip file
+      run: tar cf roulette.tar.gz publish/
+
+    - name: Create Release
+      id: create_release
+      uses: actions/create-release@v1
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      with:
+        tag_name: ${{ github.ref }}
+        release_name: Release ${{ github.ref }}
+        draft: false
+        prerelease: True
+    - name: Upload Release Asset
+      id: upload-release-asset 
+      uses: actions/upload-release-asset@v1
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      with:
+        upload_url: ${{ steps.create_release.outputs.upload_url }}
+        asset_path: ./roulette.tar.gz
+        asset_name: roulette.tar.gz
+        asset_content_type: application/gzip
