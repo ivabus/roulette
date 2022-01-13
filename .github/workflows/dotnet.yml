@@ -46,6 +46,7 @@ jobs:
           upload_url: ${{ steps.create_release.outputs.upload_url }}
           asset_path: publish/roulette-osx-x64
           asset_name: roulette-osx-x64
+          asset_content_type: application/octet-stream
 
       - name: Upload Release Asset for linux-x64
         uses: actions/upload-release-asset@v1
@@ -55,6 +56,7 @@ jobs:
           upload_url: ${{ steps.create_release.outputs.upload_url }}
           asset_path: publish/roulette-linux-x64
           asset_name: roulette-linux-x64
+          asset_content_type: application/octet-stream
 
       - name: Upload Release Asset for linux-arm64
         uses: actions/upload-release-asset@v1
@@ -64,3 +66,4 @@ jobs:
           upload_url: ${{ steps.create_release.outputs.upload_url }}
           asset_path: publish/roulette-linux-arm64
           asset_name: roulette-linux-arm64
+          asset_content_type: application/octet-stream
