@@ -22,7 +22,7 @@ jobs:
     - name: Publish on linux-x64
       run: dotnet publish --runtime linux-x64 -o publish/linux-x64/ --self-contained
     - name: Publish on linux-arm64
-      run: dotnet publish --runtime -o publish/linux-arm64/ --self-contained 
+      run: dotnet publish --runtime linux-arm64 -o publish/linux-arm64/ --self-contained 
     - name: Compress to zip file
       run: tar cf roulette.tar.gz publish/
 
