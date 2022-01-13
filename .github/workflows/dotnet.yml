@@ -6,43 +6,64 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-    - uses: actions/checkout@v2
-    - name: Setup .NET
-      uses: actions/setup-dotnet@v1
-      with:
-        dotnet-version: 6.0.x
-    - name: Restore dependencies
-      run: dotnet restore
-    - name: Build
-      run: dotnet build --no-restore
-    - name: Test
-      run: dotnet test --no-build --verbosity normal
-    - name: Publish on osx-x64
-      run: dotnet publish --runtime osx-x64 -o publish/osx-x64/ --self-contained -p:PublishSingleFile=true
-    - name: Publish on linux-x64
-      run: dotnet publish --runtime linux-x64 -o publish/linux-x64/ --self-contained -p:PublishSingleFile=true
-    - name: Publish on linux-arm64
-      run: dotnet publish --runtime linux-arm64 -o publish/linux-arm64/ --self-contained -p:PublishSingleFile=true
-    - name: Compress to zip file
-      run: tar cf roulette.tar.gz publish/
+      - uses: actions/checkout@v2
+      - name: Setup .NET
+        uses: actions/setup-dotnet@v1
+        with:
+          dotnet-version: 6.0.x
+      - name: Restore dependencies
+        run: dotnet restore
+      - name: Build
+        run: dotnet build --no-restore
+      - name: Test
+        run: dotnet test --no-build --verbosity normal
+      - name: Prepare for publishing
+        run: mkdir prepublish && mkdir publish
+      - name: Publish on osx-x64
+        run: dotnet publish --runtime osx-x64 -o prepublish/osx-x64/ --self-contained -p:PublishSingleFile=true && mv prepublish/osx-x64/roulette publish/roulette-osx-x64
+      - name: Publish on linux-x64
+        run: dotnet publish --runtime linux-x64 -o prepublish/linux-x64/ --self-contained -p:PublishSingleFile=true && mv prepublish/linux-x64/roulette publish/roulette-linux-x64
+      - name: Publish on linux-arm64
+        run: dotnet publish --runtime linux-arm64 -o prepublish/linux-arm64/ --self-contained -p:PublishSingleFile=true && mv prepublish/linux-arm64/roulette publish/roulette-linux-arm64
 
-    - name: Create Release
-      id: create_release
-      uses: actions/create-release@v1
-      env:
-        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-      with:
-        tag_name: ${{ github.ref }}
-        release_name: Release ${{ github.ref }}
-        draft: True
-        prerelease: False
-    - name: Upload Release Asset
-      id: upload-release-asset 
-      uses: actions/upload-release-asset@v1
-      env:
-        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-      with:
-        upload_url: ${{ steps.create_release.outputs.upload_url }}
-        asset_path: ./roulette.tar.gz
-        asset_name: roulette.tar.gz
-        asset_content_type: application/gzip
+      - name: Create Release
+        id: create_release
+        uses: actions/create-release@v1
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        with:
+          tag_name: EDITME
+          release_name: EDITME
+          draft: True
+          prerelease: False
+
+
+      - name: Upload Release Asset for osx-x64
+        id: upload-release-asset
+        uses: actions/upload-release-asset@v1
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        with:
+          upload_url: ${{ steps.create_release.outputs.upload_url }}
+          asset_path: publish/roulette-osx-x64
+          asset_name: roulette-osx-x64
+
+      - name: Upload Release Asset for linux-x64
+        id: upload-release-asset
+        uses: actions/upload-release-asset@v1
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        with:
+          upload_url: ${{ steps.create_release.outputs.upload_url }}
+          asset_path: publish/roulette-linux-x64
+          asset_name: roulette-linux-x64
+
+      - name: Upload Release Asset for linux-arm64
+        id: upload-release-asset
+        uses: actions/upload-release-asset@v1
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        with:
+          upload_url: ${{ steps.create_release.outputs.upload_url }}
+          asset_path: publish/roulette-linux-arm64
+          asset_name: roulette-linux-arm64
