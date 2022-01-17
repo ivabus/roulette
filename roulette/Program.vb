@@ -435,6 +435,40 @@ Module Program
 		Dim sr As Double = mass.Sum() / Count
 		pogr = Math.abs((sr - 0.5) / 0.5) * 100
 		Console.WriteLine(strings(LANG,26) + pogr.ToString("0.#####") + "%")
+		Console.ReadKey()
+	End Sub
+
+
+	Sub Menu()
+			Console.Clear()
+			Console.WriteLine(strings(LANG, 27))
+			Console.WriteLine(strings(LANG, 28))
+			Console.WriteLine(strings(LANG, 29))
+			Console.WriteLine(strings(LANG, 30))
+			Console.WriteLine(strings(LANG, 31))
+			Console.WriteLine(strings(LANG, 32))
+			Console.WriteLine(strings(LANG, 33))
+			Console.Write(">>> ")
+			Dim input As Integer = Console.ReadLine
+			Select Case input
+				Case 0
+					Exit Sub
+				Case 1
+					Console.Clear()
+					Game()
+					Menu()
+				Case 2
+					Rules()
+					Menu()
+				Case 3
+					About()
+					Menu()
+				Case 4
+					TestGenerator()
+					Menu()
+				Case Else
+					Exit Sub
+			End Select
 	End Sub
 
 	Sub Main()
@@ -457,33 +491,7 @@ Module Program
 			End If
 			
 			Intro()
-			Console.WriteLine(strings(LANG, 27))
-			Console.WriteLine(strings(LANG, 28))
-			Console.WriteLine(strings(LANG, 29))
-			Console.WriteLine(strings(LANG, 30))
-			Console.WriteLine(strings(LANG, 31))
-			Console.WriteLine(strings(LANG, 32))
-			Console.WriteLine(strings(LANG, 33))
-			Console.Write(">>> ")
-			Dim input As Integer = Console.ReadLine
-			Select Case input
-				Case 0
-					Exit Sub
-				Case 1
-					Console.Clear
-						Game()
-					Main()
-				Case 2
-					Rules()
-					Main()
-				Case 3
-					About()
-					Main()
-				Case 4
-					TestGenerator()
-				Case Else
-					Exit Sub
-			End Select
+			Menu()
 		Catch
 			Console.WriteLine(strings(LANG, 34))
 			Exit Sub
