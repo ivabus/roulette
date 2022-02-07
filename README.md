@@ -17,6 +17,10 @@
 |macOS-arm64 (Rosetta)|✅|
 |Windows-x64| ❌ |
 |Windows-arm64| ❌ |
+
+Windows не поддерживается из-за отутствия полноценной поддержки UTF-8.
+
+
 ## Запуск
 
 1. Скачать нужный файл со страницы Releases
@@ -48,6 +52,9 @@ The game is a European roulette in the console.
 |macOS-arm64 (Rosetta)|✅|
 |Windows-x64| ❌ |
 |Windows-arm64| ❌ |
+
+Windows is not supported due to the lack of full UTF-8 support.
+
 ## Запуск
 
 1. Download the executable from "Releases" page
