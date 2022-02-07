@@ -8,11 +8,16 @@
 
 Игра представляет собой Европейскую рулетку в консоли. / Game is european roulette in terminal.
 
-Протестировано на macOS-arm64 (через Rosetta 2), macOS-x64, linux-x64. / Tested on macOS-arm64(via Rosetta 2), macOS-x64, linux-x64
-
+## Поддержка
+|Платформа / Platform|Статус / Status|
+|---|:---:|
+|linux-x64|✅|
+|linux-arm64|✅|
+|macOS-x64 (Intel)|✅|
+|macOS-arm64 (Rosetta)|✅|
+|Windows-x64| ❌ |
+|Windows-arm64| ❌ |
 ## Запуск
-
-Системные требования: macOS или Linux, поддержка UTF-8 в системе. / System requirements: macOS or Linux with UTF-8 support in system.
 
 1. Скачать нужный файл со страницы Releases / Download executable from "Releases" page
 2. Запустить / Run
