@@ -15,10 +15,10 @@
 |linux-arm64|✅|
 |macOS-x64 (Intel)|✅|
 |macOS-arm64 (Rosetta)|✅|
-|Windows-x64| ❌ |
-|Windows-arm64| ❌ |
+|Windows-x64| ❗ |
+|Windows-arm64| ❗ |
 
-Windows не поддерживается из-за отутствия полноценной поддержки UTF-8.
+Работы по поддержке Windows ведутся
 
 
 ## Запуск
@@ -50,10 +50,10 @@ The game is a European roulette in the console.
 |linux-arm64|✅|
 |macOS-x64 (Intel)|✅|
 |macOS-arm64 (Rosetta)|✅|
-|Windows-x64| ❌ |
-|Windows-arm64| ❌ |
+|Windows-x64| ❗ |
+|Windows-arm64| ❗ |
 
-Windows is not supported due to the lack of full UTF-8 support.
+Work on Windows support is underway
 
 ## Запуск
 
