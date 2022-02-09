@@ -1,6 +1,0 @@
-language: csharp
-solution: roulette.sln
-dotnet: 6
-script:
- - dotnet restore
- - dotnet build
