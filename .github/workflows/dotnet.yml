@@ -29,6 +29,8 @@ jobs:
 
       - name: Upload To Github Release
         uses: xresloader/upload-to-github-release@v1.3.2
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
           file: publish/roulette-osx-x64;publish/roulette-linux-x64;publish/roulette-linux-arm64
           update_latest_release: true
