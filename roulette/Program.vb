@@ -1,7 +1,4 @@
-
-Imports System.Diagnostics.SymbolStore
-
-Module Program
+﻿Module Program
 	'https://github.com/ivabus/roulette
 	'https://ivabus.github.io/roulette
 	Dim ReadOnly _
@@ -265,15 +262,15 @@ Module Program
 				Console.Write(" ")
 			End If
 		Next
-
+		
 		Console.ForegroundColor = ConsoleColor.DarkBlue
 		Console.Write("    1L")
 		Console.WriteLine()
 		Console.WriteLine("    F12    |    S12    |    T12    ")
 		Console.ForegroundColor = ConsoleColor.DarkBlue
 	End Sub
-
 	Sub Rules()
+		If LANG = 1 Then
 		Console.Clear
 		Console.ForegroundColor = ConsoleColor.DarkBlue
 		Console.WriteLine("Рекомендуемое разрешение консоли: 100x35")
@@ -287,7 +284,7 @@ Module Program
 		Console.WriteLine("RED/BLACK - ставка на цвет (1:2).")
 		Console.WriteLine("TO18/FROM18 - ставка на сектор от 1 по 18/от 19 по 36 (1:2).")
 		Console.WriteLine("EVEN/ODD - чётные/нечётные (1:2).")
-		Console.WriteLine("Игрок изначально получает 5000 фишек.")
+		Console.WriteLine("Игрок изначально получает 500, 100, 10, 2 фишки.")
 		Console.WriteLine(
 			"После того, как игрок укажет, на что ставит, он указывает количество фишек на каждую ставку через пробел.")
 		Console.WriteLine("Например:")
@@ -298,8 +295,35 @@ Module Program
 		Console.WriteLine("Или просто нажмите ENTER, чтобы пропустить ставку.")
 		Console.WriteLine("Удачи!")
 		Console.ReadKey()
+		ElseIf LANG = 2 Then
+			Console.Clear
+			Console.ForegroundColor = ConsoleColor.DarkBlue
+			Console.WriteLine("Recommended console resolution: 100x35")
+			Console.WriteLine("Minimum console resolution: 100x20")
+			Console.WriteLine("Rules:")
+			Console.WriteLine (
+				"The game is a European roulette. The player must place a bet on a certain zone, whether it is a number, dozen, column, parity or color. A player can place several bets. Bids are entered into the provided zone separated by a space.")
+			Console.WriteLine("<number 0 - 36> - bet on the number (1:36).")
+			Console.WriteLine("1L/2L/3L - 1/2/3 line, respectively, from bottom to top (1:3).")
+			Console.WriteLine("F12/S12/T12 - bet on sectors from 1 to 12/from 13 to 24/from 25 to 36 respectively (1:3).")
+			Console.WriteLine("RED/BLACK - bet on color (1:2).")
+			Console.WriteLine("TO18/FROM18 - bet on the dozen from 1 to 18/from 19 to 36 (1:2).")
+			Console.WriteLine("EVEN/ODD - even/odd (1:2).")
+			Console.WriteLine("The player initially receives 500,100,10 or 2 chips.")
+			Console.WriteLine (
+				"After the player indicates what he is betting on, he indicates the number of chips for each bet separated by a space.")
+			Console.WriteLine("For example:")
+			Console.WriteLine("Place bets >>> 0 16 2L T12 RED ODD")
+			Console.WriteLine("Specify the bid amounts >>> 100 50 500 500 1000 1000")
+			Console.WriteLine(
+				"ATTENTION! The number of bets must match the number of chips you bet, in the example 6 = 6.")
+			Console.WriteLine("Or just press ENTER to skip the bet.")
+			Console.WriteLine("Good luck!")
+			Console.ReadKey()
+			
+		End If
+		
 	End Sub
-
 	Sub Game()
 		Console.WriteLine(strings(LANG, 2))
 		Console.WriteLine(strings(LANG, 3))
@@ -437,8 +461,6 @@ Module Program
 		Console.WriteLine(strings(LANG,26) + pogr.ToString("0.#####") + "%")
 		Console.ReadKey()
 	End Sub
-
-
 	Sub Menu()
 			Console.Clear()
 			Console.WriteLine(strings(LANG, 27))
