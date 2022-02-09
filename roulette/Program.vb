@@ -15,7 +15,7 @@
 			  7, 28, 12, 35, 3, 26}
 	'ringRank0 нужен, чтобы было удобно подавать массив в поиск индекса
 
-	Private Const ReleaseTag As String = "2.1.1"
+	Private Const ReleaseTag As String = "2.1.3"
 	
 	Dim LANG As Integer = -1
 	Dim ReadOnly strings(,)= {{"История выпадений (последние 15): ", "   Нажмите любую кнопку, чтобы начать игру! ",
