@@ -1,4 +1,4 @@
-# Рулетка / Roulette
+# Рулетка / Roulette [![.NET](https://github.com/ivabus/roulette/actions/workflows/dotnet.yml/badge.svg?event=release)](https://github.com/ivabus/roulette/actions/workflows/dotnet.yml)
 
 ## Игра с открытым исходным кодом на VB.NET
 
