@@ -1,1 +1,6 @@
-language: vbnet
+language: csharp
+solution: roulette.sln
+dotnet: 6.0.2
+script:
+ - dotnet restore
+ - dotnet build
