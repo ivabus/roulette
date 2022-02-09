@@ -33,4 +33,4 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
           file: publish/roulette-osx-x64;publish/roulette-linux-x64;publish/roulette-linux-arm64
-          update_latest_release: true
+          release_id: ${{release.release.release_id}}
