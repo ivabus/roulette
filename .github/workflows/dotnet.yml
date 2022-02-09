@@ -1,4 +1,4 @@
-name: .NET
+name: Create binaries
 on:
   release:
     types: [published]
@@ -33,4 +33,34 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
           file: publish/roulette-osx-x64;publish/roulette-linux-x64;publish/roulette-linux-arm64
-          release_id: ${{release.release.release_id}}
+          tags: ${{ github.ref }}
+          
+  build-win:
+    runs-on: windows-latest
+    steps:
+      - uses: actions/checkout@v2
+      - name: Setup .NET
+        uses: actions/setup-dotnet@v1
+        with:
+          dotnet-version: 6.0.x
+      - name: Restore dependencies
+        run: dotnet restore
+      - name: Build
+        run: dotnet build --no-restore
+      - name: Test
+        run: dotnet test --no-build --verbosity normal
+      - name: Prepare for building
+        run: mkdir prepublish && mkdir publish
+      - name: Publish on osx-x64
+        run: dotnet publish --runtime win-x64 -o prepublish/win-x64/ --self-contained -p:PublishSingleFile=true && mv prepublish/win-x64/roulette.exe publish/roulette-win-x64.exe
+      - name: Publish on linux-x64
+        run: dotnet publish --runtime win-arm64 -o prepublish/win-arm64/ --self-contained -p:PublishSingleFile=true && mv prepublish/win-arm64/roulette.exe publish/roulette-win-arm64.exe
+
+
+      - name: Upload To Github Release
+        uses: xresloader/upload-to-github-release@v1.3.2
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        with:
+          file: publish/roulette-win-x64.exe;publish/roulette-win-arm64.exe
+          tags: ${{ github.ref }}
