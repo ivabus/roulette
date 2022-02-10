@@ -1,7 +1,7 @@
 <div id="top"></div>
 
 <div align="center">
-  <h1 align="center">Рулетка / Roulette</h3>
+  <h1 align="center">Рулетка | Roulette</h3>
   <img alt="GitHub Workflow Status" src="https://img.shields.io/github/workflow/status/ivabus/roulette/checks">
   <img alt="GitHub release (latest by date)" src="https://img.shields.io/github/v/release/ivabus/roulette">
   <img alt="GitHub Release Date" src="https://img.shields.io/github/release-date/ivabus/roulette">
