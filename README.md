@@ -42,6 +42,8 @@
   | 3. | Check the window size (100x40 characters recommended) |
   | 4. | Profit |
 
+  [Troubleshooting](./troubleshooting.md)
+  
   ## Screenshots
 
   <img alt="Скриншот 1" src="screenshots/1.png" width="200"/>
@@ -77,6 +79,7 @@
   |Windows-x64| ✅ |
   |Windows-arm64| ✅ |
 
+  [Устранение неполадок](./troubleshooting.md)
 
   ## Запуск
   | 0. | Инструкция по запуску |
