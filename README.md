@@ -19,11 +19,8 @@
 |linux-arm64|✅|
 |macOS-x64 (Intel)|✅|
 |macOS-arm64 (Rosetta)|✅|
-|Windows-x64| ❗ |
-|Windows-arm64| ❗ |
-
-Работы по поддержке Windows ведутся
-
+|Windows-x64| ✅ |
+|Windows-arm64| ✅ |
 
 ## Запуск
 
@@ -52,10 +49,8 @@ The game is a European roulette in the console.
 |linux-arm64|✅|
 |macOS-x64 (Intel)|✅|
 |macOS-arm64 (Rosetta)|✅|
-|Windows-x64| ❗ |
-|Windows-arm64| ❗ |
-
-Work on Windows support is underway
+|Windows-x64| ✅ |
+|Windows-arm64| ✅ |
 
 ## Запуск
 
