@@ -1,5 +1,5 @@
 # Рулетка / Roulette
-[![Test build](https://github.com/ivabus/roulette/actions/workflows/build.yml/badge.svg?branch=main)](https://github.com/ivabus/roulette/actions/workflows/build.yml)
+[![checks](https://github.com/ivabus/roulette/actions/workflows/build.yml/badge.svg?branch=main)](https://github.com/ivabus/roulette/actions/workflows/build.yml)
 ![GitHub all releases](https://img.shields.io/github/downloads/ivabus/roulette/total)
 ![GitHub release (latest SemVer)](https://img.shields.io/github/v/release/ivabus/roulette)
 ![GitHub commit activity](https://img.shields.io/github/commit-activity/m/ivabus/roulette)
