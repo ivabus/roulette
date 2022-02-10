@@ -17,7 +17,7 @@ Module Program
 			  7, 28, 12, 35, 3, 26}
 	'ringRank0 нужен, чтобы было удобно подавать массив в поиск индекса
 
-	Private Const ReleaseTag As String = "2.1.4"
+	Private Const ReleaseTag As String = "2.1.5"
 	
 	Dim _lang As Integer = -1 ' 0 - русский language, 1 - english язык
 	
