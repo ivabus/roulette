@@ -1,0 +1,58 @@
+name: create-binaries
+on:
+  release:
+    types: [created]
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - name: Setup .NET
+        uses: actions/setup-dotnet@v1
+        with:
+          dotnet-version: 6.0.x
+      - name: Restore dependencies
+        run: dotnet restore
+      - name: Build
+        run: dotnet build --no-restore
+      - name: Test
+        run: dotnet test --no-build --verbosity normal
+      - name: Prepare for building
+        run: mkdir prepublish publish
+      - name: Create binary for osx-x64
+        run: |
+          dotnet publish --runtime osx-x64 -o prepublish/osx-x64/ --self-contained -p:PublishSingleFile=true
+          mv prepublish/osx-x64/roulette publish/roulette-osx-x64
+      - name: Create binary for osx-arm64
+        run: |
+          dotnet publish --runtime osx-arm64 -o prepublish/osx-arm64/ --self-contained -p:PublishSingleFile=true
+          mv prepublish/osx-arm64/roulette publish/roulette-osx-arm64
+      - name: Create binary for linux-x64
+        run: |
+          dotnet publish --runtime linux-x64 -o prepublish/linux-x64/ --self-contained -p:PublishSingleFile=true
+          mv prepublish/linux-x64/roulette publish/roulette-linux-x64
+      - name: Create binary for linux-arm64
+        run: |
+          dotnet publish --runtime linux-arm64 -o prepublish/linux-arm64/ --self-contained -p:PublishSingleFile=true
+          mv prepublish/linux-arm64/roulette publish/roulette-linux-arm64
+      - name: Create binary for linux-musl-x64
+        run: |
+          dotnet publish --runtime linux-musl-x64 -o prepublish/linux-musl-x64/ --self-contained -p:PublishSingleFile=true
+          mv prepublish/linux-musl-x64/roulette publish/roulette-linux-musl-x64
+      - name: Create binary for win-x64
+        run: |
+          dotnet publish --runtime win-x64 -o prepublish/win-x64/ --self-contained -p:PublishSingleFile=true
+          mv prepublish/win-x64/roulette.exe publish/roulette-win-x64.exe
+      - name: Create binary for win-arm64
+        run: |
+          dotnet publish --runtime win-arm64 -o prepublish/win-arm64/ --self-contained -p:PublishSingleFile=true
+          mv prepublish/win-arm64/roulette.exe publish/roulette-win-arm64.exe
+
+
+      - name: Upload To Github Release
+        uses: xresloader/upload-to-github-release@v1.3.2
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        with:
+          file: publish/*
+          tags: ${{ github.ref }}
