@@ -81,7 +81,7 @@ jobs:
         run: |
           dotnet publish --runtime osx-arm64 -o prepublish/osx-arm64/ --self-contained -p:PublishSingleFile=true
           mv prepublish/osx-arm64/roulette publish/roulette-osx-arm64
-          codesign -s - publish/roulette-osx-arm64
+#          codesign -s - publish/roulette-osx-arm64
       - name: Upload To Github Release
         uses: xresloader/upload-to-github-release@v1.3.2
         env:
