@@ -1,38 +1,52 @@
-# Рулетка / Roulette
-[![checks](https://github.com/ivabus/roulette/actions/workflows/checks.yml/badge.svg)](https://github.com/ivabus/roulette/actions/workflows/checks.yml)
-![GitHub all releases](https://img.shields.io/github/downloads/ivabus/roulette/total)
-![GitHub release (latest SemVer)](https://img.shields.io/github/v/release/ivabus/roulette)
-![GitHub commit activity](https://img.shields.io/github/commit-activity/m/ivabus/roulette)
-![GitHub](https://img.shields.io/github/license/ivabus/roulette)
+<div id="top"></div>
 
+<div align="center">
+  <h1 align="center">Рулетка / Roulette</h3>
+  <img alt="GitHub Workflow Status" src="https://img.shields.io/github/workflow/status/ivabus/roulette/checks">
+  <img alt="GitHub release (latest by date)" src="https://img.shields.io/github/v/release/ivabus/roulette">
+  <img alt="GitHub Release Date" src="https://img.shields.io/github/release-date/ivabus/roulette">
+  <img alt="GitHub all releases" src="https://img.shields.io/github/downloads/ivabus/roulette/total">
+  <img alt="GitHub commits since latest release (by date)" src="https://img.shields.io/github/commits-since/ivabus/roulette/latest">
+  <img alt="GitHub commit activity" src="https://img.shields.io/github/commit-activity/m/ivabus/roulette">
+  <img alt="GitHub" src="https://img.shields.io/github/license/ivabus/roulette">
+</div>
 
-## Игра с открытым исходным кодом на VB.NET
+<h2 align="center">Игра с открытым исходным кодом на VB.NET</h2>
+
+<div align="center">
 
 Создатель и сопроводитель: Иван Бущик <ivan@bushchik.ru>
 
 Игра представляет собой Европейскую рулетку в консоли.
 
-## Поддержка платформ
-|Платформа|Статус|
-|---|:---:|
-|linux-x64|✅|
-|linux-arm64|✅|
-|macOS-x64 (Intel)|✅|
-|macOS-arm64 (Rosetta)|✅|
-|Windows-x64| ✅ |
-|Windows-arm64| ✅ |
+
+<h3 align="center">Поддержка платформ</h3>
+
+  
+  |Платформа|Статус|
+  |---|:---:|
+  |linux-x64|✅|
+  |linux-arm64|✅|
+  |macOS-x64 (Intel)|✅|
+  |macOS-arm64 (Rosetta)|✅|
+  |Windows-x64| ✅ |
+  |Windows-arm64| ✅ |
+
 
 ## Запуск
-
-1. Скачать нужный файл со страницы Releases
-2. Запустить
-3. Проверить размер окна (рекомендуется 100х40 символов)
-4. Profit
+| 0. | Инструкция по запуску |
+|:---:|---|
+| 1. | Скачать нужный файл со страницы [Releases](https://github.com/ivabus/roulette/releases) |
+| 2. | Запустить |
+| 3. | Проверить размер окна (рекомендуется 100х40 символов) |
+| 4. | Profit |
 
 ## Скриншоты
 
 <img alt="Скриншот 1" src="screenshots/1.png" width="200"/>
 <img alt="Скриншот 2" src="screenshots/2.png" width="200"/>
+
+<p align="right">(<a href="#top">back to top</a>)</p>
 
 # Roulette
 
@@ -52,12 +66,14 @@ The game is a European roulette in the console.
 |Windows-x64| ✅ |
 |Windows-arm64| ✅ |
 
-## Запуск
+## Launching
 
-1. Download the executable from "Releases" page
-2. Run it
-3. Check window size (recommended is 100x40)
-4. Profit
+| 0. | Launching Instructions |
+|:---:|---|
+| 1. | Download the required file from the [Releases](https://github.com/ivabus/roulette/releases) page |
+| 2. | Run |
+| 3. | Check the window size (100x40 characters recommended) |
+| 4. | Profit |
 
 ## Screenshots
 
@@ -65,3 +81,7 @@ The game is a European roulette in the console.
 <img alt="Скриншот 2" src="screenshots/2.png" width="200"/>
 
 
+<p align="right">(<a href="#top">back to top</a>)</p>
+  
+
+</div>
