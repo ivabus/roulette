@@ -1,10 +1,14 @@
-# Рулетка / Roulette [![Test build](https://github.com/ivabus/roulette/actions/workflows/build.yml/badge.svg?branch=main)](https://github.com/ivabus/roulette/actions/workflows/build.yml)
+# Рулетка / Roulette
+[![Test build](https://github.com/ivabus/roulette/actions/workflows/build.yml/badge.svg?branch=main)](https://github.com/ivabus/roulette/actions/workflows/build.yml)
+![GitHub all releases](https://img.shields.io/github/downloads/ivabus/roulette/total)
+![GitHub release (latest SemVer)](https://img.shields.io/github/v/release/ivabus/roulette)
+![GitHub commit activity](https://img.shields.io/github/commit-activity/m/ivabus/roulette)
+![GitHub](https://img.shields.io/github/license/ivabus/roulette)
+
 
 ## Игра с открытым исходным кодом на VB.NET
 
 Создатель и сопроводитель: Иван Бущик <ivan@bushchik.ru>
-
-Лицензия: MIT 
 
 Игра представляет собой Европейскую рулетку в консоли.
 
@@ -38,8 +42,6 @@
 ## Open source game on VB.net
 
 Creator and maintainer: Ivan Bushchik <ivan@bushchik.ru>
-
-License: MIT
 
 The game is a European roulette in the console.
 
