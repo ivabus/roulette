@@ -1,4 +1,6 @@
-﻿Module Program
+﻿Imports System.Text
+
+Module Program
 	'https://github.com/ivabus/roulette
 	'https://ivabus.github.io/roulette
 	Dim ReadOnly _
@@ -17,7 +19,8 @@
 
 	Private Const ReleaseTag As String = "2.1.3"
 	
-	Dim LANG As Integer = -1
+	Dim _lang As Integer = -1 ' 0 - русский language, 1 - english язык
+	
 	Dim ReadOnly strings(,)= {{"История выпадений (последние 15): ", "   Нажмите любую кнопку, чтобы начать игру! ",
 	                           "Выберите сложность: ", "1) Лёгкая - 500 фишек в начале", "2) Нормальная - 100 фишек в начале",
 	                           "3) Сложная - 10 фишек в начале", "4) Невозможная - 2 фишки в начале",
@@ -60,7 +63,7 @@
 
 	Sub DisplayHistory(history() As Integer)		'Эта функция не реализована в Game(), потому что это захламляло бы код
 		Console.ForegroundColor = ConsoleColor.DarkBlue
-		Console.Write(strings(LANG,0))
+		Console.Write(strings(_lang,0))
 		For i = If(Ubound(history) > 14, Ubound(history) - 14, 0) To UBound(history)
 			Console.ForegroundColor = Colors(Ring(1, getindex(RingRank0, history(i))))
 			Console.Write(history(i) & " ")
@@ -99,7 +102,7 @@
 			Console.WriteLine(StrDup(Console.WindowWidth - 1, "#"))
 			Sleep(0.04444)
 		Next
-		Dim entr = strings(LANG,1)
+		Dim entr = strings(_lang,1)
 		Console.SetCursorPosition((Console.WindowWidth\2) - Len(entr)\2,
 		                          Console.WindowHeight - (Console.WindowHeight()\2 - UBound(Logo) + 2)\4 - 3)
 		Console.Write(StrDup(Len(entr) + 2, " "))
@@ -142,13 +145,13 @@
 		whatDropped.Add(Ring(0, dropped).ToString())
 
 		If dropped = 0 Then return whatDropped.ToArray()
-		If Ring(0, dropped) mod 2 = 0 And dropped > 0
+		If Ring(0, dropped) mod 2 = 0
 			whatDropped.Add("EVEN")
 		Else
 			whatDropped.Add("ODD")
 		End If
 
-		If Ring(0, dropped) mod 3 = 0 And dropped > 0
+		If Ring(0, dropped) mod 3 = 0
 			whatDropped.Add("3L")
 		Else If Ring(0, dropped) mod 3 = 1
 			whatDropped.Add("2L")
@@ -270,32 +273,32 @@
 		Console.ForegroundColor = ConsoleColor.DarkBlue
 	End Sub
 	Sub Rules()
-		If LANG = 1 Then
-		Console.Clear
-		Console.ForegroundColor = ConsoleColor.DarkBlue
-		Console.WriteLine("Рекомендуемое разрешение консоли: 100x35")
-		Console.WriteLine("Минимальное разрешение консоли: 100х20")
-		Console.WriteLine("Правила:")
-		Console.WriteLine(
-			"Игра представляет собой Европейскую рулетку. Игрок должен сделать ставку на определённую зону, будь то число, сектор, строка, чётность или цвет. Игрок может делать несколько ставок. Ставки вводятся в предоставленную зону через пробел.")
-		Console.WriteLine("<число 0 - 36> - ставка на число (1:36).")
-		Console.WriteLine("1L/2L/3L - 1/2/3 линия соответственно, снизу вверх (1:3).")
-		Console.WriteLine("F12/S12/T12 - ставка на сектора от 1 по 12/от 13 по 24/от 25 по 36 соответственно (1:3).")
-		Console.WriteLine("RED/BLACK - ставка на цвет (1:2).")
-		Console.WriteLine("TO18/FROM18 - ставка на сектор от 1 по 18/от 19 по 36 (1:2).")
-		Console.WriteLine("EVEN/ODD - чётные/нечётные (1:2).")
-		Console.WriteLine("Игрок изначально получает 500, 100, 10, 2 фишки.")
-		Console.WriteLine(
-			"После того, как игрок укажет, на что ставит, он указывает количество фишек на каждую ставку через пробел.")
-		Console.WriteLine("Например:")
-		Console.WriteLine("Делайте ставки >>> 0 16 2L T12 RED ODD")
-		Console.WriteLine("Укажите суммы ставок >>> 100 50 500 500 1000 1000")
-		Console.WriteLine(
-			"ВНИМАНИЕ! Количество ставок должно совпадать с количеством фишек, которые ставите, в примере 6 = 6.")
-		Console.WriteLine("Или просто нажмите ENTER, чтобы пропустить ставку.")
-		Console.WriteLine("Удачи!")
-		Console.ReadKey()
-		ElseIf LANG = 2 Then
+		If _lang = 0 Then
+			Console.Clear
+			Console.ForegroundColor = ConsoleColor.DarkBlue
+			Console.WriteLine("Рекомендуемое разрешение консоли: 100x35")
+			Console.WriteLine("Минимальное разрешение консоли: 100х20")
+			Console.WriteLine("Правила:")
+			Console.WriteLine(
+				"Игра представляет собой Европейскую рулетку. Игрок должен сделать ставку на определённую зону, будь то число, сектор, строка, чётность или цвет. Игрок может делать несколько ставок. Ставки вводятся в предоставленную зону через пробел.")
+			Console.WriteLine("<число 0 - 36> - ставка на число (1:36).")
+			Console.WriteLine("1L/2L/3L - 1/2/3 линия соответственно, снизу вверх (1:3).")
+			Console.WriteLine("F12/S12/T12 - ставка на сектора от 1 по 12/от 13 по 24/от 25 по 36 соответственно (1:3).")
+			Console.WriteLine("RED/BLACK - ставка на цвет (1:2).")
+			Console.WriteLine("TO18/FROM18 - ставка на сектор от 1 по 18/от 19 по 36 (1:2).")
+			Console.WriteLine("EVEN/ODD - чётные/нечётные (1:2).")
+			Console.WriteLine("Игрок изначально получает 500, 100, 10, 2 фишки.")
+			Console.WriteLine(
+				"После того, как игрок укажет, на что ставит, он указывает количество фишек на каждую ставку через пробел.")
+			Console.WriteLine("Например:")
+			Console.WriteLine("Делайте ставки >>> 0 16 2L T12 RED ODD")
+			Console.WriteLine("Укажите суммы ставок >>> 100 50 500 500 1000 1000")
+			Console.WriteLine(
+				"ВНИМАНИЕ! Количество ставок должно совпадать с количеством фишек, которые ставите, в примере 6 = 6.")
+			Console.WriteLine("Или просто нажмите ENTER, чтобы пропустить ставку.")
+			Console.WriteLine("Удачи!")
+			Console.ReadKey()
+		Else
 			Console.Clear
 			Console.ForegroundColor = ConsoleColor.DarkBlue
 			Console.WriteLine("Recommended console resolution: 100x35")
@@ -325,11 +328,11 @@
 		
 	End Sub
 	Sub Game()
-		Console.WriteLine(strings(LANG, 2))
-		Console.WriteLine(strings(LANG, 3))
-		Console.WriteLine(strings(LANG, 4))
-		Console.WriteLine(strings(LANG, 5))
-		Console.WriteLine(strings(LANG, 6))
+		Console.WriteLine(strings(_lang, 2))
+		Console.WriteLine(strings(_lang, 3))
+		Console.WriteLine(strings(_lang, 4))
+		Console.WriteLine(strings(_lang, 5))
+		Console.WriteLine(strings(_lang, 6))
 		Console.Write(">>> ")
 		Dim choose As Integer = Console.ReadLine()
 		Dim fish As Long
@@ -343,28 +346,27 @@
 			Case 4
 				fish = 2
 			Case Else
-				Console.WriteLine(strings(LANG, 7))
+				Console.WriteLine(strings(_lang, 7))
 		End Select
-		Console.WriteLine(strings(LANG,8))
+		Console.WriteLine(strings(_lang,8))
 		Dim history As New List(Of Integer)
-
+		Console.Clear()
 		Do while fish > 0
 			Console.ForegroundColor = ConsoleColor.DarkBlue
 			Dim generated() As String = SpinWheel()
-			Console.Clear
 			history.Add(generated(0))
 
-			Console.WriteLine(strings(LANG,9))
+			Console.WriteLine(strings(_lang,9))
 			Console.Write(">>> ")
 			Dim stav
 			stav = UCase(Console.ReadLine()).Split.ToList()
-			Console.WriteLine(strings(LANG,10))
+			Console.WriteLine(strings(_lang,10))
 			Console.Write(">>> ")
 			Dim summ() As String
 			summ = Console.ReadLine().Split
 			For i = 0 To UBound(summ)
 				If not IsNumeric(summ(i)) Then
-					Console.WriteLine(strings(LANG,11))
+					Console.WriteLine(strings(_lang,11))
 					Continue Do
 				End If
 			Next
@@ -373,17 +375,18 @@
 				summs.add(Int(summ(i)))
 			Next
 			If stav.Count <> summs.Count Or summs.ToArray.Sum() > fish Then
-				Console.WriteLine(strings(LANG, 11))
+				Console.WriteLine(strings(_lang, 11))
 				Continue Do
 			End If
 			For i = 0 To summs.Count - 1
 				If summs(i) < 0 Then
-					Console.WriteLine(strings(LANG, 11))
+					Console.WriteLine(strings(_lang, 11))
 					Continue Do
 				End If
 			Next
-			Console.WriteLine(strings(LANG, 12))
+			Console.WriteLine(strings(_lang, 12))
 			Sleep(0.5)
+			Console.Clear()
 			Display(Int(generated(0)))
 			Console.ForegroundColor = ConsoleColor.DarkBlue
 			Dim indedx As Integer
@@ -409,7 +412,7 @@
 				fish -= summs(i)
 			Next
 			Console.WriteLine()
-			Console.Write(strings(LANG,13))
+			Console.Write(strings(_lang,13))
 			For i = 0 To UBound(generated)
 				Console.Write(generated(i) & " ")
 			Next
@@ -417,31 +420,31 @@
 			DisplayHistory(history.ToArray())
 			Console.ForegroundColor = ConsoleColor.DarkBlue
 			Console.WriteLine()
-			Console.WriteLine(strings(LANG, 14), fish)
-			Console.Write(strings(LANG, 15))
+			Console.WriteLine(strings(_lang, 14), fish)
+			Console.Write(strings(_lang, 15))
 			Dim temp As String = Console.ReadLine()
 			If temp = "n" or temp = "N" Then
 				Exit Sub
 			Else IF temp = "" or temp = "y" or temp = "Y"
 				Console.Write("")
 			Else
-				Console.WriteLine(strings(LANG, 16))
+				Console.WriteLine(strings(_lang, 16))
 			End If
 		Loop
-		Console.WriteLine(strings(LANG, 17))
-		Console.WriteLine(strings(LANG, 18))
+		Console.WriteLine(strings(_lang, 17))
+		Console.WriteLine(strings(_lang, 18))
 		Console.ReadKey()
 	End Sub
 	
 	Sub About()
 		Console.Clear()
-		Console.WriteLine(strings(LANG, 19))
-		Console.WriteLine(strings(LANG, 20))
-		Console.WriteLine(strings(LANG, 21))
-		Console.WriteLine(strings(LANG, 22))
-		Console.WriteLine(strings(LANG, 23))
-		Console.WriteLine(strings(LANG, 24) + ReleaseTag)
-		Console.WriteLine(strings(LANG, 18))
+		Console.WriteLine(strings(_lang, 19))
+		Console.WriteLine(strings(_lang, 20))
+		Console.WriteLine(strings(_lang, 21))
+		Console.WriteLine(strings(_lang, 22))
+		Console.WriteLine(strings(_lang, 23))
+		Console.WriteLine(strings(_lang, 24) + ReleaseTag)
+		Console.WriteLine(strings(_lang, 18))
 		Console.ReadKey()
 	End Sub
 
@@ -449,7 +452,7 @@
 		Randomize()
 		Dim count As Long
 		Dim rnd As New Random
-		Console.Write(strings(LANG, 25))
+		Console.Write(strings(_lang, 25))
 		Count = Console.ReadLine()
 		Dim mass(count) As Double
 		For i = 0 to Ubound(mass)
@@ -458,18 +461,18 @@
 		Dim pogr As Double = 0
 		Dim sr As Double = mass.Sum() / Count
 		pogr = Math.abs((sr - 0.5) / 0.5) * 100
-		Console.WriteLine(strings(LANG,26) + pogr.ToString("0.#####") + "%")
+		Console.WriteLine(strings(_lang,26) + pogr.ToString("0.#####") + "%")
 		Console.ReadKey()
 	End Sub
 	Sub Menu()
 			Console.Clear()
-			Console.WriteLine(strings(LANG, 27))
-			Console.WriteLine(strings(LANG, 28))
-			Console.WriteLine(strings(LANG, 29))
-			Console.WriteLine(strings(LANG, 30))
-			Console.WriteLine(strings(LANG, 31))
-			Console.WriteLine(strings(LANG, 32))
-			Console.WriteLine(strings(LANG, 33))
+			Console.WriteLine(strings(_lang, 27))
+			Console.WriteLine(strings(_lang, 28))
+			Console.WriteLine(strings(_lang, 29))
+			Console.WriteLine(strings(_lang, 30))
+			Console.WriteLine(strings(_lang, 31))
+			Console.WriteLine(strings(_lang, 32))
+			Console.WriteLine(strings(_lang, 33))
 			Console.Write(">>> ")
 			Dim input As Integer = Console.ReadLine
 			Select Case input
@@ -495,17 +498,21 @@
 
 	Sub Main()
 		Try
+			If OperatingSystem.IsWindows() Then
+				Console.SetWindowSize(100,40)
+				Console.OutputEncoding = New UTF8Encoding()
+			End If
 			Console.BackgroundColor = ConsoleColor.Green
 			Console.ForegroundColor = ConsoleColor.DarkBlue
 			Randomize()
 			Console.Clear()
-			If LANG = -1 Then
+			If _lang = -1 Then
 				Console.WriteLine("Choose language / Выберете язык:")
 				Console.WriteLine("1) Russian / Русский")
 				Console.WriteLine("2) English / Английский")
 				Console.Write(">>> ")
-				LANG = Console.ReadLine() - 1
-				if LANG < 0 or LANG > 1 Then
+				_lang = Console.ReadLine() - 1
+				if _lang < 0 or _lang > 1 Then
 					Console.WriteLine("Incorrect choose")
 					Exit Sub
 				End If
@@ -515,7 +522,7 @@
 			Intro()
 			Menu()
 		Catch
-			Console.WriteLine(strings(LANG, 34))
+			Console.WriteLine(strings(_lang, 34))
 			Exit Sub
 		End Try
 	End Sub
