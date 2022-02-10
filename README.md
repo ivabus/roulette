@@ -25,9 +25,10 @@
   |Platform|Status|
   |---|:---:|
   |linux-x64|✅|
+  |linux-musl-x64|✅|
   |linux-arm64|✅|
   |macOS-x64 (Intel)|✅|
-  |macOS-arm64 (Rosetta)|✅|
+  |macOS-arm64 (Apple Silicon)|✅|
   |Windows-x64| ✅ |
   |Windows-arm64| ✅ |
 
@@ -67,9 +68,10 @@
   |Платформа|Статус|
   |---|:---:|
   |linux-x64|✅|
+  |linux-musl-x64|✅|
   |linux-arm64|✅|
   |macOS-x64 (Intel)|✅|
-  |macOS-arm64 (Rosetta)|✅|
+  |macOS-arm64 (Apple Silicon)|✅|
   |Windows-x64| ✅ |
   |Windows-arm64| ✅ |
 
