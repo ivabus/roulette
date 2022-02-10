@@ -38,7 +38,11 @@ jobs:
       - name: Create binary for linux-musl-x64
         run: |
           dotnet publish --runtime linux-musl-x64 -o prepublish/linux-musl-x64/ --self-contained -p:PublishSingleFile=true
-          mv prepublish/linux-musl-x64/roulette publish/roulette-linux-musl-x64
+          mv prepublish/linux-musl-x64/roulette publish/roulette-linux-musl-x64      
+      - name: Create binary for linux-musl-arm64
+        run: |
+          dotnet publish --runtime linux-musl-arm64 -o prepublish/linux-musl-x64/ --self-contained -p:PublishSingleFile=true
+          mv prepublish/linux-musl-arm64/roulette publish/roulette-linux-musl-arm64
       - name: Create binary for win-x64
         run: |
           dotnet publish --runtime win-x64 -o prepublish/win-x64/ --self-contained -p:PublishSingleFile=true
