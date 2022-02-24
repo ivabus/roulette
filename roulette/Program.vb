@@ -27,7 +27,7 @@ Module Program
 	                           "Выбор некорректен!", "Игра началась!", "Делайте ставки:", "Укажите суммы ставок:", "Ставки не корректны. Пропуск.",
 	                           "Крутим колесо...", "Выпало: ", "У Вас {0} фишек.", "Продолжить игру? (Y/n) >>> ", "Неверный ввод, продолжаем игру.",
 	                           "У Вас закончились фишки, игра окончена.", "Нажмите любую клавишу, чтобы выйти в меню.",
-	                           "Рулетка / roulette", "Автор: Иван Бущик <ivan@bushchik.ru>", "Лицензия: MIT", "Сайт: ivabus.dev/roulette",
+	                           "Рулетка / roulette", "Автор: Иван Бущик <ivan@bushchik.ru>", "Лицензия: GNU GPLv3", "Сайт: ivabus.dev/roulette",
 	                           "Репозиторий: github.com/ivabus/roulette", "Версия: ", "Введите количество чисел для генерирования >>> ",
 	                           "Погрешность генератора случайных чисел: ", "Игра Рулетка", "1) Начать игру",
 	                           "2) Ознакомиться с правилами", "3) О игре", "Дополнительно:", "4) Проверка генератора случайных чисел",
@@ -39,7 +39,7 @@ Module Program
 	                           "Spinning wheel...", "Dropped: ", "You have {0} chips.", "Continue? (Y/n) >>> ",
 	                           "Incorrect input, we continue the game.", "You have run out of chips, the game is over.",
 	                           "Press any key to exit the menu.", "Roulette", "Author: Ivan Bushchik <ivan@bushchik.ru>",
-	                           "License: MIT", "Website: ivabus.dev/roulette", "Repository: github.com/ivabus/roulette",
+			"License: GNU GPLv3", "Website: ivabus.dev/roulette", "Repository: github.com/ivabus/roulette",
 	                           "Version: ", "Enter the number of numbers to generate >>> ",
 	                           "Error of the random number generator: ", "Roulette game", "1) Begin game",
 	                           "2) Check the rules", "3) About game", "Additional: ", "4) Checking the random number generator", "0) Exit", "Error!"}}
