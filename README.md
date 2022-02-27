@@ -19,7 +19,7 @@
 
   Creator and maintainer: Ivan Bushchik <ivan@bushchik.ru>
 
-  The game is a European roulette in the console.
+  The game is a realization of European roulette in the console.
 
   ## Platform support
   |Platform|Status|
@@ -62,7 +62,7 @@
 
   Создатель и сопроводитель: Иван Бущик <ivan@bushchik.ru>
 
-  Игра представляет собой Европейскую рулетку в консоли.
+  Игра представляет собой реализацию Европейской рулетки в консоли.
 
 
   <h3 align="center">Поддержка платформ</h3>
