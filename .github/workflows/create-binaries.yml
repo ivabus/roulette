@@ -54,7 +54,7 @@ jobs:
 
 
       - name: Upload To Github Release
-        uses: xresloader/upload-to-github-release@v1.3.2
+        uses: xresloader/upload-to-github-release@v1.3.3
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
