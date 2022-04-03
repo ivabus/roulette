@@ -21,7 +21,7 @@ Module Program
 	
 	Dim _lang As Integer = -1 ' 0 - русский language, 1 - english язык
 	
-	Dim ReadOnly strings(,)= {{"История выпадений (последние 15): ", "   Нажмите любую кнопку, чтобы начать игру! ",
+	Dim ReadOnly LocalizationStrings(,)= {{"История выпадений (последние 15): ", "   Нажмите любую кнопку, чтобы начать игру! ",
 	                           "Выберите сложность: ", "1) Лёгкая - 500 фишек в начале", "2) Нормальная - 100 фишек в начале",
 	                           "3) Сложная - 10 фишек в начале", "4) Невозможная - 2 фишки в начале",
 	                           "Выбор некорректен!", "Игра началась!", "Делайте ставки:", "Укажите суммы ставок:", "Ставки не корректны. Пропуск.",
@@ -63,7 +63,7 @@ Module Program
 
 	Sub DisplayHistory(history() As Integer)		'Эта функция не реализована в Game(), потому что это захламляло бы код
 		Console.ForegroundColor = ConsoleColor.DarkBlue
-		Console.Write(strings(_lang,0))
+		Console.Write(LocalizationStrings(_lang,0))
 		For i = If(Ubound(history) > 14, Ubound(history) - 14, 0) To UBound(history)
 			Console.ForegroundColor = Colors(Ring(1, getindex(RingRank0, history(i))))
 			Console.Write(history(i) & " ")
@@ -102,7 +102,7 @@ Module Program
 			Console.WriteLine(StrDup(Console.WindowWidth - 1, "#"))
 			Sleep(0.04444)
 		Next
-		Dim entr = strings(_lang,1)
+		Dim entr = LocalizationStrings(_lang,1)
 		Console.SetCursorPosition((Console.WindowWidth\2) - Len(entr)\2,
 		                          Console.WindowHeight - (Console.WindowHeight()\2 - UBound(Logo) + 2)\4 - 3)
 		Console.Write(StrDup(Len(entr) + 2, " "))
@@ -328,11 +328,11 @@ Module Program
 		
 	End Sub
 	Sub Game()
-		Console.WriteLine(strings(_lang, 2))
-		Console.WriteLine(strings(_lang, 3))
-		Console.WriteLine(strings(_lang, 4))
-		Console.WriteLine(strings(_lang, 5))
-		Console.WriteLine(strings(_lang, 6))
+		Console.WriteLine(LocalizationStrings(_lang, 2))
+		Console.WriteLine(LocalizationStrings(_lang, 3))
+		Console.WriteLine(LocalizationStrings(_lang, 4))
+		Console.WriteLine(LocalizationStrings(_lang, 5))
+		Console.WriteLine(LocalizationStrings(_lang, 6))
 		Console.Write(">>> ")
 		Dim choose As Integer = Console.ReadLine()
 		Dim fish As Long
@@ -346,9 +346,9 @@ Module Program
 			Case 4
 				fish = 2
 			Case Else
-				Console.WriteLine(strings(_lang, 7))
+				Console.WriteLine(LocalizationStrings(_lang, 7))
 		End Select
-		Console.WriteLine(strings(_lang,8))
+		Console.WriteLine(LocalizationStrings(_lang,8))
 		Dim history As New List(Of Integer)
 		Console.Clear()
 		Do while fish > 0
@@ -356,17 +356,17 @@ Module Program
 			Dim generated() As String = SpinWheel()
 			history.Add(generated(0))
 
-			Console.WriteLine(strings(_lang,9))
+			Console.WriteLine(LocalizationStrings(_lang,9))
 			Console.Write(">>> ")
 			Dim stav
 			stav = UCase(Console.ReadLine()).Split.ToList()
-			Console.WriteLine(strings(_lang,10))
+			Console.WriteLine(LocalizationStrings(_lang,10))
 			Console.Write(">>> ")
 			Dim summ() As String
 			summ = Console.ReadLine().Split
 			For i = 0 To UBound(summ)
 				If not IsNumeric(summ(i)) Then
-					Console.WriteLine(strings(_lang,11))
+					Console.WriteLine(LocalizationStrings(_lang,11))
 					Continue Do
 				End If
 			Next
@@ -375,16 +375,16 @@ Module Program
 				summs.add(Int(summ(i)))
 			Next
 			If stav.Count <> summs.Count Or summs.ToArray.Sum() > fish Then
-				Console.WriteLine(strings(_lang, 11))
+				Console.WriteLine(LocalizationStrings(_lang, 11))
 				Continue Do
 			End If
 			For i = 0 To summs.Count - 1
 				If summs(i) < 0 Then
-					Console.WriteLine(strings(_lang, 11))
+					Console.WriteLine(LocalizationStrings(_lang, 11))
 					Continue Do
 				End If
 			Next
-			Console.WriteLine(strings(_lang, 12))
+			Console.WriteLine(LocalizationStrings(_lang, 12))
 			Sleep(0.5)
 			Console.Clear()
 			Display(Int(generated(0)))
@@ -412,7 +412,7 @@ Module Program
 				fish -= summs(i)
 			Next
 			Console.WriteLine()
-			Console.Write(strings(_lang,13))
+			Console.Write(LocalizationStrings(_lang,13))
 			For i = 0 To UBound(generated)
 				Console.Write(generated(i) & " ")
 			Next
@@ -420,31 +420,31 @@ Module Program
 			DisplayHistory(history.ToArray())
 			Console.ForegroundColor = ConsoleColor.DarkBlue
 			Console.WriteLine()
-			Console.WriteLine(strings(_lang, 14), fish)
-			Console.Write(strings(_lang, 15))
+			Console.WriteLine(LocalizationStrings(_lang, 14), fish)
+			Console.Write(LocalizationStrings(_lang, 15))
 			Dim temp As String = Console.ReadLine()
 			If temp = "n" or temp = "N" Then
 				Exit Sub
 			Else IF temp = "" or temp = "y" or temp = "Y"
 				Console.Write("")
 			Else
-				Console.WriteLine(strings(_lang, 16))
+				Console.WriteLine(LocalizationStrings(_lang, 16))
 			End If
 		Loop
-		Console.WriteLine(strings(_lang, 17))
-		Console.WriteLine(strings(_lang, 18))
+		Console.WriteLine(LocalizationStrings(_lang, 17))
+		Console.WriteLine(LocalizationStrings(_lang, 18))
 		Console.ReadKey()
 	End Sub
 	
 	Sub About()
 		Console.Clear()
-		Console.WriteLine(strings(_lang, 19))
-		Console.WriteLine(strings(_lang, 20))
-		Console.WriteLine(strings(_lang, 21))
-		Console.WriteLine(strings(_lang, 22))
-		Console.WriteLine(strings(_lang, 23))
-		Console.WriteLine(strings(_lang, 24) + ReleaseTag)
-		Console.WriteLine(strings(_lang, 18))
+		Console.WriteLine(LocalizationStrings(_lang, 19))
+		Console.WriteLine(LocalizationStrings(_lang, 20))
+		Console.WriteLine(LocalizationStrings(_lang, 21))
+		Console.WriteLine(LocalizationStrings(_lang, 22))
+		Console.WriteLine(LocalizationStrings(_lang, 23))
+		Console.WriteLine(LocalizationStrings(_lang, 24) + ReleaseTag)
+		Console.WriteLine(LocalizationStrings(_lang, 18))
 		Console.ReadKey()
 	End Sub
 
@@ -452,27 +452,27 @@ Module Program
 		Randomize()
 		Dim count As Long
 		Dim rnd As New Random
-		Console.Write(strings(_lang, 25))
+		Console.Write(LocalizationStrings(_lang, 25))
 		Count = Console.ReadLine()
 		Dim mass(count) As Double
 		For i = 0 to Ubound(mass)
 			mass(i) = rnd.NextDouble()
 		Next
-		Dim pogr As Double = 0
+		Dim pogr As Double
 		Dim sr As Double = mass.Sum() / Count
 		pogr = Math.abs((sr - 0.5) / 0.5) * 100
-		Console.WriteLine(strings(_lang,26) + pogr.ToString("0.#####") + "%")
+		Console.WriteLine(LocalizationStrings(_lang,26) + pogr.ToString("0.#####") + "%")
 		Console.ReadKey()
 	End Sub
 	Sub Menu()
 			Console.Clear()
-			Console.WriteLine(strings(_lang, 27))
-			Console.WriteLine(strings(_lang, 28))
-			Console.WriteLine(strings(_lang, 29))
-			Console.WriteLine(strings(_lang, 30))
-			Console.WriteLine(strings(_lang, 31))
-			Console.WriteLine(strings(_lang, 32))
-			Console.WriteLine(strings(_lang, 33))
+			Console.WriteLine(LocalizationStrings(_lang, 27))
+			Console.WriteLine(LocalizationStrings(_lang, 28))
+			Console.WriteLine(LocalizationStrings(_lang, 29))
+			Console.WriteLine(LocalizationStrings(_lang, 30))
+			Console.WriteLine(LocalizationStrings(_lang, 31))
+			Console.WriteLine(LocalizationStrings(_lang, 32))
+			Console.WriteLine(LocalizationStrings(_lang, 33))
 			Console.Write(">>> ")
 			Dim input As Integer = Console.ReadLine
 			Select Case input
@@ -522,7 +522,7 @@ Module Program
 			Intro()
 			Menu()
 		Catch
-			Console.WriteLine(strings(_lang, 34))
+			Console.WriteLine(LocalizationStrings(_lang, 34))
 			Exit Sub
 		End Try
 	End Sub
