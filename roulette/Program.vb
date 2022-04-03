@@ -2,7 +2,7 @@
 
 Module Program
 	'https://github.com/ivabus/roulette
-	'https://ivabus.github.io/roulette
+	'https://ivabus.dev/roulette
 	Dim ReadOnly _
 		Ring(,) As Integer =
 			{{0, 32, 15, 19, 4, 21, 2, 25, 17, 34, 6, 27, 13, 36, 11, 30, 8, 23, 10, 5, 24, 16, 33, 1, 20, 14, 31, 9, 22, 18, 29,
@@ -54,7 +54,7 @@ Module Program
 		                                "#  #   #   #  #   #  #      #        #      #    #     ",
 		                                "#   #   ###    ###   #####  #####    #      #    ##### "}
 
-	Function GetIndex(mass() As Integer, obj As Integer) As Integer 'Функция получает индекс объекта в массиве
+	Private Function GetIndex(mass() As Integer, obj As Integer) As Integer 'Функция получает индекс объекта в массиве
 		For i = 0 To UBound(mass)
 			If mass(i) = obj Then Return i
 		Next
